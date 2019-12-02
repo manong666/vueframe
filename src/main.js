@@ -3,10 +3,10 @@ import router from "./router";
 
 import "./styles/base.scss";
 
-import "./plugins/http-base.js";
-import "./plugins/http-interceptors.js";
+import "./plugins/http-base";
+import "./plugins/http-interceptors";
 
-import App from "./App.jsx";
+import App from "./App";
 
 Vue.config.productionTip = false;
 

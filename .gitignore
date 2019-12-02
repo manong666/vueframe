@@ -20,7 +20,7 @@ yarn-error.log*
 *.sln
 *.sw?
 
-lettools
+integralManage
 dist
 distDev
 .history

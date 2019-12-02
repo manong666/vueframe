@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import RouteView from "@/components/layout/route";
 
 Vue.use(Router);
 
@@ -33,7 +34,7 @@ export default new Router({
   },
   routes: [
     {
-      path: "/main",
+      path: "/",
       name: "main",
       title: "首页",
       component: () => import("@/views/main")
@@ -48,11 +49,17 @@ export default new Router({
       path: "/rank",
       name: "rank",
       title: "排名",
-      // component: () => import("@/views/rank")
+      component: RouteView,
       children: [
         {
+          path: "main",
+          name: "rankMain",
+          title: "排名",
+          component: () => import("@/views/rank/main")
+        },
+        {
           path: "integral",
-          name: "integral",
+          name: "rankIntegral",
           title: "积分排名",
           component: () => import("@/views/rank/integral")
         },
@@ -68,8 +75,14 @@ export default new Router({
       path: "/my",
       name: "my",
       title: "我的",
-      // component: () => import("@/views/my")
+      component: RouteView,
       children: [
+        {
+          path: "main",
+          name: "myMain",
+          title: "我的",
+          component: () => import("@/views/my/main")
+        },
         {
           path: "applyList",
           name: "applyList",
@@ -94,17 +107,23 @@ export default new Router({
       path: "/examine",
       name: "examine",
       title: "审批",
-      // component: () => import("@/views/examine")
+      component: RouteView,
       children: [
         {
+          path: "main",
+          name: "examineMain",
+          title: "我的",
+          component: () => import("@/views/examine/main")
+        },
+        {
           path: "list",
-          name: "list",
+          name: "examineList",
           title: "审批列表",
           component: () => import("@/views/examine/list")
         },
         {
           path: "detail",
-          name: "detail",
+          name: "examineDetail",
           title: "审批详情",
           component: () => import("@/views/examine/detail")
         }
@@ -114,11 +133,11 @@ export default new Router({
       path: "/staffManage",
       name: "staffManage",
       title: "员工管理",
-      // component: () => import("@/views/staffManage")
+      component: RouteView,
       children: [
         {
           path: "list",
-          name: "list",
+          name: "staffManageList",
           title: "员工列表",
           component: () => import("@/views/staffManage/list")
         },
@@ -152,17 +171,17 @@ export default new Router({
       path: "/storeManage",
       name: "storeManage",
       title: "门店管理",
-      // component: () => import("@/views/storeManage")
+      component: RouteView,
       children: [
         {
           path: "list",
-          name: "list",
+          name: "storeManageList",
           title: "门店列表",
           component: () => import("@/views/storeManage/list")
         },
         {
           path: "detail",
-          name: "detail",
+          name: "storeManageDetail",
           title: "门店详情",
           component: () => import("@/views/storeManage/detail")
         }
@@ -172,17 +191,17 @@ export default new Router({
       path: "/integralRule",
       name: "integralRule",
       title: "积分规则",
-      // component: () => import("@/views/integralRule"),
+      component: RouteView,
       children: [
         {
           path: "list",
-          name: "list",
+          name: "integralRuleList",
           title: "积分规则列表",
           component: () => import("@/views/integralRule/list")
         },
         {
           path: "detail",
-          name: "detail",
+          name: "integralRuleDetail",
           title: "积分规则详情",
           component: () => import("@/views/integralRule/detail")
         }

@@ -16,7 +16,7 @@ module.exports = {
       "/api": {
         ws: false,
         changeOrigin: true,
-        target: "https://xxx.asiainfo.com",
+        target: "http://xxx.asiainfo.com",
         pathRewrite: {
           "^/api": "/" // rewrite path
         }

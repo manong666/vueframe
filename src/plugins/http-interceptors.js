@@ -1,6 +1,7 @@
 import http from "./http-base.js";
 import { Notify } from "vant";
-
+import store from "@/store/index";
+import router from "@/router/index";
 // /**
 //  * @description _tips
 //  */
@@ -15,8 +16,19 @@ import { Notify } from "vant";
 //   }
 // ) => config;
 
+const responseFuncObj = {
+  "0000": resp => {
+    console.log(resp);
+  },
+  "0001": () => router.push("/login"),
+  default: msg => Notify(msg)
+};
+
 http.interceptors.request.use(
   config => {
+    if (store.state.user.token) {
+      config.headers["api_token"] = store.state.user.token;
+    }
     return config;
   },
   err => {
@@ -28,14 +40,13 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   resp => {
     const {
-      data: { code, resultcode, resultdesc, msg, info }
+      data: { code, msg, data }
     } = resp;
-    switch (code || resultcode) {
-      case "0000":
-        break;
-      default:
-        Notify(msg || info || resultdesc);
-        break;
+
+    try {
+      responseFuncObj[code](data);
+    } catch (error) {
+      responseFuncObj.default(msg);
     }
 
     return resp;

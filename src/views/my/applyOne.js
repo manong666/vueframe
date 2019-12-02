@@ -5,6 +5,7 @@ export default {
   mounted() {},
   destroyed() {},
   render() {
+    console.log(this.$route);
     return <div>main</div>;
   },
   methods: {}

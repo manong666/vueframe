@@ -90,7 +90,7 @@ export default new Router({
           component: () => import("@/views/my/applyList")
         },
         {
-          path: "applyOne",
+          path: "applyOne/:applyId",
           name: "applyOne",
           title: "申请单项",
           component: () => import("@/views/my/applyOne")

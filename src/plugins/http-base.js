@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const http = Axios.create({
-  // method: "post",
+  method: "post",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json;charset=UTF-8",

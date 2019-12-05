@@ -11,6 +11,7 @@ export default {
       state.token = token;
     },
     assignInfo(state, info) {
+      console.log(state.info);
       state.info = info;
     }
   },
@@ -29,6 +30,7 @@ export default {
       get_login({ data: { ...params } }).then(resp => {
         commit("assignToken", resp.data.data["api_token"]);
         commit("assignInfo", resp.data.data);
+        console.log("zhixing");
       });
     }
   }

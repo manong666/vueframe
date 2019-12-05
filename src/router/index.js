@@ -72,6 +72,20 @@ export default new Router({
       ]
     },
     {
+      path: "/apply",
+      name: "apply",
+      title: "申请",
+      component: RouteView,
+      children: [
+        {
+          path: "main",
+          name: "applyMain",
+          title: "申请",
+          component: () => import("@/views/apply/main")
+        }
+      ]
+    },
+    {
       path: "/my",
       name: "my",
       title: "我的",

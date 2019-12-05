@@ -7,7 +7,8 @@ import { merge } from "lodash";
 /**
  * @description 登录接口
  */
-export const get_login = param =>
+export const get_login = () =>
+  // param =>
   // http.request(
   //   merge(
   //     {
@@ -20,16 +21,17 @@ export const get_login = param =>
 /**
  * @description 首页接口
  */
-export const get_index = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.index
-      },
-      param
-    )
-  );
-
+export const get_index = () =>
+  // param =>
+  //   http.request(
+  //     merge(
+  //       {
+  //         url: api_URL.index
+  //       },
+  //       param
+  //     )
+  //   );
+  import("@/mock/userInfo").then(resp => resp.default);
 /**
  * @description 积分排名查询接口
  */
@@ -293,16 +295,17 @@ export const get_store_delete = param =>
 /**
  * @description 积分规则列表查询
  */
-export const get_rule_list = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.rule_list
-      },
-      param
-    )
-  );
-
+export const get_rule_list = () =>
+  // param =>
+  //   http.request(
+  //     merge(
+  //       {
+  //         url: api_URL.rule_list
+  //       },
+  //       param
+  //     )
+  //   );
+  import("@/mock/ruleList").then(resp => resp.default);
 /**
  * @description 积分规则列表详情
  */

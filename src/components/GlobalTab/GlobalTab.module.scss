@@ -1,0 +1,10 @@
+.tab{
+  .tabItem{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+  }
+}

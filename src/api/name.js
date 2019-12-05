@@ -13,16 +13,16 @@ export default {
   info: "/integral/manager/approval/info.do", //审批接口:
   staff_list: "/integral/manager/staff/list.do", //员工列表接口:
   staff_detailList: "/integral/manager/staff/detailList.do", //员工详情接口:
-  staff_delete: "/integral/manager/staff/delete.do", //删除员工接口:
+  staff_delete: "/integral/manager/staff/del.do", //删除员工接口:
   staff_add: "/integral/manager/staff/add.do", //新增员工接口:
   encourageStaff_list: "/integral/manager/encourageStaff/list.do", //员工奖扣记录接口:
   encourageStaff_add: "/integral/manager/encourageStaff/add.do", //新增员工奖扣接口:
   store_list: "/integral/manager/store/list.do", //门店列表接口:
   store_detailList: "/integral/manager/store/detailList.do", //门店详情接口:
   store_add: "/integral/manager/store/add.do", //新增门店接口:
-  store_delete: "/integral/manager/store/delete.do", //删除门店接口:
+  store_delete: "/integral/manager/store/del.do", //删除门店接口:
   rule_list: "/integral/manager/rule/list.do", //积分规则列表查询:
   rule_detailList: "/integral/manager/rule/detailList.do", //积分规则列表详情:
   rule_add: "/integral/manager/rule/add.do", //新增积分规则:
-  rule_delete: "/integral/manager/rule/delete.do" //删除积分规则:
+  rule_delete: "/integral/manager/rule/del.do" //删除积分规则:
 };

@@ -87,28 +87,31 @@ export const get_applyDetailList = param =>
 /**
  * @description 我的_申请积分接口
  */
-export const get_applyIntegral = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.applyIntegral
-      },
-      param
-    )
-  );
-
+export const get_applyIntegral = () =>
+  // param =>
+  //   http.request(
+  //     merge(
+  //       {
+  //         url: api_URL.applyIntegral
+  //       },
+  //       param
+  //     )
+  //   );
+  import("@/mock/applyRuleResult").then(resp => resp.default);
 /**
  * @description 我的_奖项名称和对应ID列表接口
  */
-export const get_integralNameList = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.integralNameList
-      },
-      param
-    )
-  );
+export const get_integralNameList = () =>
+  import("@/mock/integralList").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.integralNameList
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 首页_积分明细查询接口__我的_积分明细查询接口

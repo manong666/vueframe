@@ -1,43 +1,110 @@
-import { Card, Cell, Popup, Area } from "vant";
+import { Button, Toast } from "vant";
 import GlobalTab from "@/components/GlobalTab/GlobalTab";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
-import { get_rule_list } from "@/api/index";
+import RewardCard from "@/components/RewardCard/RewardCard";
+import { get_integralNameList, get_applyIntegral } from "@/api/index";
+import S from "./main.module.scss";
 export default {
   data() {
     return {
       title: "申请",
-      reward: "请选择奖扣名称",
-      isShow: false
+      children: [
+        {
+          reward: "请选择奖扣名称",
+          number: this.number
+        }
+      ],
+      columns: [],
+      ruleList: [],
+      commitList: [],
+      number: 0
     };
   },
+  computed: {
+    isRepeat() {
+      this.children.map(kid => {
+        this.columns.splice(this.columns.findIndex(v => v === kid.reward), 1);
+      });
+      return this.columns;
+    }
+  },
+  mounted() {
+    this.getRuleList();
+  },
   methods: {
-    changeShow() {
-      this.isShow = true;
-    },
     getRuleList() {
-      get_rule_list().then(resp => console.log(resp));
+      get_integralNameList().then(resp => {
+        resp.ruleList.map(v => this.columns.push(v.name));
+        this.ruleList = resp.ruleList;
+      });
+    },
+    addCard() {
+      this.children.push({ reward: "请选择奖扣名称:" });
+    },
+    remove(title) {
+      this.children.splice(this.children.findIndex(v => v.reward === title), 1);
+    },
+    commit() {
+      this.commitList = this.children.map(kid =>
+        JSON.parse(
+          JSON.stringify(this.ruleList.find(rule => rule.name === kid.reward))
+        )
+      );
+      this.children.map(kid => {
+        this.commitList.find(v => v.name === kid.reward).price =
+          kid.number * this.commitList.find(v => v.name === kid.reward).price;
+      });
+      console.log(this.commitList);
+      get_applyIntegral({
+        data: {}
+      }).then(resp => {
+        if (resp.code === "0001") {
+          Toast("提交成功");
+        }
+      });
     }
   },
   render() {
     return (
-      <div>
+      <div class={S.main}>
         <GlobalHeader {...{ props: { title: this.title } }} />
-        <Card>
-          <Cell
-            title="奖项名称"
-            slot="desc"
-            value={this.reward}
-            onClick={this.changeShow}
-          />
-        </Card>
-        <Popup
-          v-model={this.isShow}
-          position="bottom"
-          overlay
-          style="height:20%"
-        >
-          <Area />
-        </Popup>
+        <div class={S.container}>
+          {this.children.map(v => (
+            <RewardCard
+              v-model={v}
+              {...{
+                props: {
+                  ruleList: this.ruleList,
+                  columns: this.isRepeat,
+                  delete: this.remove
+                }
+              }}
+            />
+          ))}
+
+          <div class={S.button}>
+            <Button
+              class={S.btn}
+              type="info"
+              size="large"
+              round
+              onClick={this.addCard}
+            >
+              添加
+            </Button>
+          </div>
+          <div class={S.button}>
+            <Button
+              class={S.btn}
+              type="warning"
+              size="large"
+              round
+              onClick={this.commit}
+            >
+              提交
+            </Button>
+          </div>
+        </div>
         <GlobalTab />
       </div>
     );

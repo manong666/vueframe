@@ -41,15 +41,17 @@ export default {
   destroyed() {},
   render() {
     return this.$store.state.user.info.roleID === "01" ? (
-      <div />
+      <div> </div>
     ) : this.$store.state.user.info.roleID === "02" ? (
       <div />
     ) : (
       <div class={S.mainPage}>
         <GlobalHeader {...{ props: { title: this.title } }} />
-        <PersonCard {...{ props: { data: this.data } }} />
-        <RankList {...{ props: { data: this.data } }} />
-        <IntegralList {...{ props: { data: this.data } }} />
+        <div class={S.container}>
+          <PersonCard {...{ props: { data: this.data } }} />
+          <RankList {...{ props: { data: this.data } }} />
+          <IntegralList {...{ props: { data: this.data } }} />
+        </div>
         <GlobalTab />
       </div>
     );

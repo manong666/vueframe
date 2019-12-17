@@ -1,40 +1,50 @@
-import { DropdownMenu, DropdownItem, DatetimePicker } from "vant";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+import Dropdown from "@/components/Dropdown/Dropdown";
+import IntegralRankList from "@/components/IntegralRankList/IntegralRankList";
+import { get_store_list, get_integralQuery } from "@/api/index";
 import S from "./integral.module.scss";
 export default {
   data() {
     return {
       title: "积分排名",
-      currentDate: new Date(),
-      date: "日期"
+      value: { date: "日期", store: "111111" },
+      storeList: [],
+      rankList: []
     };
   },
-  mounted() {},
+  mounted() {
+    this.getStoreList();
+    this.getRankList();
+  },
   destroyed() {},
   render() {
     return (
       <div class={S.main}>
         <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
-          <DropdownMenu direction="up">
-            <DropdownItem title={this.date} get-container="body">
-              <DatetimePicker
-                v-model={this.currentDate}
-                type="year-month"
-                show-toolbar={false}
-                slot="default"
-                {...{ on: { change: this.onChangeTime } }}
-              />
-            </DropdownItem>
-          </DropdownMenu>
+          <Dropdown
+            {...{ props: { storeList: this.storeList } }}
+            v-model={this.value}
+          />
+          <IntegralRankList {...{ props: { rankList: this.rankList } }} />
         </div>
       </div>
     );
   },
   methods: {
-    onChangeTime(picker) {
-      // getValues()
-      console.log(picker);
+    getStoreList() {
+      // TODO:传参没有处理
+      get_store_list().then(resp => {
+        this.storeList = resp.storeList.map(v => {
+          let obj = { value: v.id, text: v.title };
+          return obj;
+        });
+      });
+    },
+    getRankList() {
+      get_integralQuery().then(resp => {
+        this.rankList = resp.rank;
+      });
     }
   }
 };

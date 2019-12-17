@@ -35,28 +35,32 @@ export const get_index = () =>
 /**
  * @description 积分排名查询接口
  */
-export const get_integralQuery = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.integralQuery
-      },
-      param
-    )
-  );
+export const get_integralQuery = () =>
+  import("@/mock/integralRank").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.integralQuery
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 奖券排名查询接口
  */
-export const get_ticketQuery = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.ticketQuery
-      },
-      param
-    )
-  );
+export const get_ticketQuery = () =>
+  import("@/mock/lotteryRank").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.ticketQuery
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 我的_申请列表接口
@@ -246,15 +250,17 @@ export const get_encourageStaff_add = param =>
 /**
  * @description 门店列表接口
  */
-export const get_store_list = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.store_list
-      },
-      param
-    )
-  );
+export const get_store_list = () =>
+  import("@/mock/storeList").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.store_list
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 门店详情接口

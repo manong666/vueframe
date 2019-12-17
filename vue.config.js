@@ -16,10 +16,10 @@ module.exports = {
       "/jf-demo-integral": {
         ws: false,
         changeOrigin: true,
-        target: "http://demo.mall.10010.com:8104",
-        pathRewrite: {
-          "^/jf-demo-integral": "/" // rewrite path
-        }
+        target: "http://demo.mall.10010.com:8104"
+        // pathRewrite: {
+        //   "^/jf-demo-integral": "/" // rewrite path
+        // }
       }
     }
   },

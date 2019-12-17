@@ -13,12 +13,12 @@ module.exports = {
     host: "dev.10010.com",
     proxy: {
       // 基础设施
-      "/api": {
+      "/jf-demo-integral": {
         ws: false,
         changeOrigin: true,
-        target: "http://xxx.asiainfo.com",
+        target: "http://demo.mall.10010.com:8104",
         pathRewrite: {
-          "^/api": "/" // rewrite path
+          "^/jf-demo-integral": "/" // rewrite path
         }
       }
     }

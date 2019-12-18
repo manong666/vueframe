@@ -1,0 +1,25 @@
+.staffList {
+    padding:0 5%;
+    .content{
+        display: flex;
+        height:60px;
+        align-items: center;
+        justify-content: space-around;
+        border-bottom: 1px solid #eee8e8;
+        font-size: 14px;
+        color:#323233;
+        .infos{
+            width:75%;
+            .staff{
+                display: flex;
+                .name{
+                    margin-right:50px;
+                }
+            }
+            .ruleName{
+             // height:30px;
+             line-height: 25px;
+            }
+        }
+    }
+ }

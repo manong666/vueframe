@@ -17,6 +17,7 @@ export default {
   staff_add: "/integral/manager/staff/add.do", //新增员工接口:
   encourageStaff_list: "/integral/manager/encourageStaff/list.do", //员工奖扣记录接口:
   encourageStaff_add: "/integral/manager/encourageStaff/add.do", //新增员工奖扣接口:
+  encourageStaff_delete: "/integral/manager/encourageStaff/del.do", //删除员工奖扣接口:
   store_list: "/integral/manager/store/list.do", //门店列表接口:
   store_detailList: "/integral/manager/store/detailList.do", //门店详情接口:
   store_add: "/integral/manager/store/add.do", //新增门店接口:

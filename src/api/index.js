@@ -273,7 +273,22 @@ export const get_staff_add = param =>
 /**
  * @description 员工奖扣记录接口
  */
-export const get_encourageStaff_list = param =>
+export const get_encourageStaff_list = () =>
+  // param =>
+  //   http.request(
+  //     merge(
+  //       {
+  //         url: api_URL.encourageStaff_list
+  //       },
+  //       param
+  //     )
+  //   );
+  import("@/mock/staffRewardList").then(resp => resp.default);
+
+/**
+ * @description 新增员工奖扣接口
+ */
+export const get_encourageStaff_add = param =>
   http.request(
     merge(
       {
@@ -287,9 +302,9 @@ export const get_encourageStaff_list = param =>
   );
 
 /**
- * @description 新增员工奖扣接口
+ * @description 删除员工奖扣接口
  */
-export const get_encourageStaff_add = param =>
+export const get_encourageStaff_delete = param =>
   http.request(
     merge(
       {

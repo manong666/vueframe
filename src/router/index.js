@@ -168,6 +168,12 @@ export default new Router({
           component: () => import("@/views/staffManage/add")
         },
         {
+          path: "edit/:id",
+          name: "edit",
+          title: "编辑员工",
+          component: () => import("@/views/staffManage/edit")
+        },
+        {
           path: "logList",
           name: "logList",
           title: "员工奖扣列表",
@@ -178,6 +184,12 @@ export default new Router({
           name: "addGift",
           title: "新增员工奖扣",
           component: () => import("@/views/staffManage/addGift")
+        },
+        {
+          path: "editGift/:id",
+          name: "editGift",
+          title: "编辑员工奖扣",
+          component: () => import("@/views/staffManage/editGift")
         }
       ]
     },
@@ -218,6 +230,18 @@ export default new Router({
           name: "integralRuleDetail",
           title: "积分规则详情",
           component: () => import("@/views/integralRule/detail")
+        },
+        {
+          path: "addRule",
+          name: "integralRuleAdd",
+          title: "新建积分规则",
+          component: () => import("@/views/integralRule/addRule")
+        },
+        {
+          path: "editRule/:id",
+          name: "integralRuleEdit",
+          title: "编辑积分规则",
+          component: () => import("@/views/integralRule/editRule")
         }
       ]
     }

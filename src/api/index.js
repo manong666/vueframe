@@ -175,15 +175,17 @@ export const get_info = param =>
 /**
  * @description 员工列表接口
  */
-export const get_staff_list = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.staff_list
-      },
-      param
-    )
-  );
+export const get_staff_list = () =>
+  import("@/mock/staffList").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.staff_list
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 员工详情接口
@@ -227,15 +229,17 @@ export const get_staff_add = param =>
 /**
  * @description 员工奖扣记录接口
  */
-export const get_encourageStaff_list = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.encourageStaff_list
-      },
-      param
-    )
-  );
+export const get_encourageStaff_list = () =>
+  // param =>
+  //   http.request(
+  //     merge(
+  //       {
+  //         url: api_URL.encourageStaff_list
+  //       },
+  //       param
+  //     )
+  //   );
+  import("@/mock/staffRewardList").then(resp => resp.default);
 
 /**
  * @description 新增员工奖扣接口
@@ -251,10 +255,23 @@ export const get_encourageStaff_add = param =>
   );
 
 /**
+ * @description 删除员工奖扣接口
+ */
+export const get_encourageStaff_delete = param =>
+  http.request(
+    merge(
+      {
+        url: api_URL.encourageStaff_delete
+      },
+      param
+    )
+  );
+
+/**
  * @description 门店列表接口
  */
 export const get_store_list = () =>
-  import("@/mock/storeList").then(resp => resp.default);
+  import("@/mock/shopList").then(resp => resp.default);
 // param =>
 //   http.request(
 //     merge(
@@ -268,15 +285,17 @@ export const get_store_list = () =>
 /**
  * @description 门店详情接口
  */
-export const get_store_detailList = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.store_detailList
-      },
-      param
-    )
-  );
+export const get_store_detailList = () =>
+  import("@/mock/shopDetails").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.store_detailList
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 新增门店接口

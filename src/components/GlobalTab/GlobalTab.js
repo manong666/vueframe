@@ -9,7 +9,28 @@ export default {
   methods: {},
   render() {
     return this.$store.state.user.info.roleID === "01" ? (
-      <div />
+      <div>
+        <Tabbar v-model={this.tab} fixed route class={S.tab}>
+          <TabbarItem name="main" to="/">
+            <div class={S.tabItem} style="width:50px">
+              <Icon name="home-o" size="20px" />
+              业务管理
+            </div>
+          </TabbarItem>
+          <TabbarItem name="apply" to="">
+            <div class={S.tabItem}>
+              <Icon name="edit" size="20px" />
+              审批
+            </div>
+          </TabbarItem>
+          <TabbarItem name="rank" to="">
+            <div class={S.tabItem}>
+              <Icon name="bar-chart-o" size="20px" />
+              排名
+            </div>
+          </TabbarItem>
+        </Tabbar>
+      </div>
     ) : this.$store.state.user.info.roleID === "02" ? (
       <div />
     ) : (

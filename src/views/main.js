@@ -4,6 +4,8 @@ import RankList from "@/components/RankList/RankList";
 import IntegralList from "@/components/IntegralList/IntegralList";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import GlobalTab from "@/components/GlobalTab/GlobalTab";
+import BossCard from "@/components/PersonCard/BossCard";
+import { Cell, CellGroup } from "vant";
 import S from "./main.module.scss";
 export default {
   data() {
@@ -41,7 +43,17 @@ export default {
   destroyed() {},
   render() {
     return this.$store.state.user.info.roleID === "01" ? (
-      <div> </div>
+      <div class={S.mainPage} style="background:#fff">
+        <GlobalHeader {...{ props: { title: this.title } }} />
+        <BossCard {...{ props: { data: this.data } }} />
+        <CellGroup>
+          <Cell title="积分管理" is-link to="integralRule/list" />
+          <Cell title="员工奖扣" is-link to="staffManage/logList" />
+          <Cell title="员工管理" is-link to="staffManage/list" />
+          <Cell title="门店管理" is-link to="" />
+        </CellGroup>
+        <GlobalTab />
+      </div>
     ) : this.$store.state.user.info.roleID === "02" ? (
       <div />
     ) : (

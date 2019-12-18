@@ -1,11 +1,60 @@
+import S from "./logList.module.scss";
+import { Button } from "vant";
+import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+import RewardList from "@/components/RewardList/RewardList";
+import { get_encourageStaff_list, get_staff_delete } from "@/api/index";
 export default {
   data() {
-    return {};
+    return {
+      title: "员工奖扣",
+      data: []
+    };
   },
-  mounted() {},
+  mounted() {
+    this.getStaffRewardList();
+  },
+  methods: {
+    getStaffRewardList() {
+      get_encourageStaff_list().then(resp => {
+        this.data = resp.data.data;
+        localStorage.setItem("giftList", JSON.stringify(resp.data.data));
+        console.log(this.data);
+      });
+    },
+    addGift() {
+      this.$router.push({ name: "addGift" });
+    }
+  },
   destroyed() {},
   render() {
-    return <div>main</div>;
-  },
-  methods: {}
+    return (
+      <div class={S.mainPage}>
+        <div class={S.container}>
+          <GlobalHeader {...{ props: { title: this.title } }} />
+          <RewardList
+            {...{
+              props: { data: this.data },
+              on: {
+                deleteThis: id => {
+                  get_staff_delete(id).then(resp => (this.data = resp));
+                }
+              }
+            }}
+          />
+          <div class={S.button}>
+            <Button
+              class={S.btn}
+              type="warning"
+              size="large"
+              round
+              color="#1989fa"
+              onClick={this.addGift}
+            >
+              新建员工奖扣
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 };

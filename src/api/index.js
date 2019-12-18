@@ -35,28 +35,32 @@ export const get_index = () =>
 /**
  * @description 积分排名查询接口
  */
-export const get_integralQuery = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.integralQuery
-      },
-      param
-    )
-  );
+export const get_integralQuery = () =>
+  import("@/mock/integralRank").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.integralQuery
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 奖券排名查询接口
  */
-export const get_ticketQuery = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.ticketQuery
-      },
-      param
-    )
-  );
+export const get_ticketQuery = () =>
+  import("@/mock/lotteryRank").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.ticketQuery
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 我的_申请列表接口
@@ -101,17 +105,20 @@ export const get_applyIntegral = () =>
 /**
  * @description 我的_奖项名称和对应ID列表接口
  */
-export const get_integralNameList = () =>
-  // param =>
-  //   http.request(
-  //     merge(
-  //       {
-  //         url: api_URL.integralNameList
-  //       },
-  //       param
-  //     )
-  //   );
-  import("@/mock/integralList").then(resp => resp.default);
+export const get_integralNameList =
+  // () =>
+  // import("@/mock/integralList").then(resp => resp.default);
+  param =>
+    http.request(
+      merge(
+        {
+          method: "post",
+          url: api_URL.integralNameList,
+          headers: { "content-type": "application/json;charset=UTF-8" }
+        },
+        param
+      )
+    );
 
 /**
  * @description 首页_积分明细查询接口__我的_积分明细查询接口

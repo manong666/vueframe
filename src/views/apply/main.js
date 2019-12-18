@@ -34,8 +34,9 @@ export default {
   methods: {
     getRuleList() {
       get_integralNameList().then(resp => {
-        resp.ruleList.map(v => this.columns.push(v.name));
-        this.ruleList = resp.ruleList;
+        resp.data.data.map(v => this.columns.push(v.reward_punish_name));
+        this.ruleList = resp.data.data;
+        console.log("columns", this.columns, "ruleList", this.ruleList);
       });
     },
     addCard() {

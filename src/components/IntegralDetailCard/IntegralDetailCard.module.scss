@@ -1,0 +1,22 @@
+.box{
+  margin:5px 10px;
+  background:#fff;
+  padding:8px;
+  border-radius: 10px;
+  height: 60px;
+  .container{
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    height: 60px;
+    .line{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .price{
+        color:#ee0a24;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ export default {
     msg: "登录成功",
     data: {
       userId: "123456",
-      roleID: "03",
+      roleID: "01",
       userName: "王世桢",
       total: "1000",
       api_token: "hbdsjagyv78asd978f0"

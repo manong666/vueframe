@@ -190,15 +190,17 @@ export const get_staff_list = () =>
 /**
  * @description 员工详情接口
  */
-export const get_staff_detailList = param =>
-  http.request(
-    merge(
-      {
-        url: api_URL.staff_detailList
-      },
-      param
-    )
-  );
+export const get_staff_detailList = () =>
+  import("@/mock/staffDetail").then(resp => resp.default);
+// param =>
+//   http.request(
+//     merge(
+//       {
+//         url: api_URL.staff_detailList
+//       },
+//       param
+//     )
+//   );
 
 /**
  * @description 删除员工接口

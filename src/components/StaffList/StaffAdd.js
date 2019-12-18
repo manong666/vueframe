@@ -66,7 +66,7 @@ export default {
           onClick={this.showPicker}
         />
         <Field
-          v-model={this.c_item.staff_time}
+          v-model={this.c_item.workTime}
           label="工作开始时间"
           placeholder="请输入yyyy-mm-dd格式"
         />

@@ -1,11 +1,61 @@
+import S from "./add.module.scss";
+import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+import StaffAdd from "@/components/StaffList/StaffAdd";
+import { get_store_list, get_staff_add } from "@/api/index";
 export default {
   data() {
-    return {};
+    return {
+      title: "新增员工",
+      shopList: [],
+      shopName: []
+    };
   },
-  mounted() {},
+  computed: {
+    isShop() {
+      this.shopList.map(v => this.shopName.push(v.title));
+      console.log("shopName", this.shopName);
+      return this.shopName;
+    }
+  },
+  mounted() {
+    this.getShopList();
+  },
+  methods: {
+    getShopList() {
+      get_store_list().then(resp => (this.shopList = resp.data.data));
+    }
+  },
   destroyed() {},
   render() {
-    return <div>main</div>;
-  },
-  methods: {}
+    return (
+      <div class={S.mainPage}>
+        <div class={S.container}>
+          <GlobalHeader {...{ props: { title: this.title } }} />
+          <StaffAdd
+            {...{
+              props: {
+                item: {
+                  userName: "",
+                  phoneNo: "",
+                  idCard: "",
+                  storeId: "",
+                  workTime: "0000-00-00",
+                  diploma: "",
+                  speciality: ""
+                },
+                shopList: this.shopList,
+                shopName: this.isShop,
+                text: "保存"
+              },
+              on: {
+                saveItem: val => {
+                  get_staff_add(val).then(resp => (this.data = resp));
+                }
+              }
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
 };

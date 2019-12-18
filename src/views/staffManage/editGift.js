@@ -1,24 +1,21 @@
-import S from "./addGift.module.scss";
+import S from "./editGift.module.scss";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import RewardStaffAdd from "@/components/RewardCard/RewardStaffAdd";
-import {
-  get_store_list,
-  get_store_detailList,
-  get_encourageStaff_add
-} from "@/api/index";
+import { get_store_list } from "@/api/index";
 export default {
   data() {
     return {
-      title: "新增员工奖扣",
+      title: "编辑员工奖扣",
       ruleList: [],
       shopList: [],
       columns: [],
       shopName: [],
       shopDetail: [],
-      item: {
-        rule_store: 111,
-        rule_user: 123,
-        rule_num: 30
+      editItem: {
+        log_id: 123,
+        staff_name: "张三三",
+        rule_name: "护肤护理",
+        add_integral: 30
       }
     };
   },
@@ -30,8 +27,10 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$router.currentRoute.params.id);
     this.getRuleList();
     this.getShopList();
+    this.getData();
   },
   methods: {
     getRuleList() {
@@ -43,14 +42,20 @@ export default {
     getShopList() {
       get_store_list().then(resp => (this.shopList = resp.data.data));
     },
-    getShopStaffDetails() {
-      get_store_detailList().then(resp => (this.shopDetail = resp.data.data));
+    getData() {
+      const log_id = this.$router.currentRoute.params.id;
+      const giftList = JSON.parse(localStorage.getItem("giftList"));
+      this.editItem = giftList.find(v => {
+        if (log_id === v.log_id) {
+          return true;
+        }
+      });
+      console.log("log_id", log_id);
+      console.log(JSON.stringify(this.editItem));
     }
   },
   destroyed() {},
   render() {
-    console.log("shopList", this.shopList);
-    console.log("shopName", this.shopName);
     return (
       <div class={S.mainPage}>
         <div class={S.container}>
@@ -63,11 +68,6 @@ export default {
                 shopList: this.shopList,
                 shopName: this.isShop,
                 text: "保存"
-              },
-              on: {
-                saveItem: val => {
-                  get_encourageStaff_add(val).then(resp => (this.data = resp));
-                }
               }
             }}
           />

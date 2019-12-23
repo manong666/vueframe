@@ -12,6 +12,7 @@ export default Vue.extend({
       type: Object,
       default() {
         return {
+          id: "",
           title: "",
           time: "",
           name: "",

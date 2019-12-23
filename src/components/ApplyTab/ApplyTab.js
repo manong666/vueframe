@@ -1,7 +1,7 @@
 import { Tabs, Tab, Row, Col, Search, Cell, Popup, DatetimePicker } from "vant";
 import { get_applyList } from "@/api/index";
-import ExamineCard from "@/components/ExamineCard/ExamineCard";
-import GlobalAdaptionCard from "@/components/GlobalAdaptionCard/GlobalAdaptionCard";
+// import ExamineCard from "@/components/ExamineCard/ExamineCard";
+// import GlobalAdaptionCard from "@/components/GlobalAdaptionCard/GlobalAdaptionCard";
 import moment from "moment";
 import S from "./ApplyTab.module.scss";
 export default {
@@ -10,7 +10,8 @@ export default {
       index: 0,
       isShow: false,
       currentDate: new Date(),
-      date: "日期"
+      date: "日期",
+      applyList: []
     };
   },
   props: {},
@@ -32,7 +33,7 @@ export default {
           rewardPunishName: ""
         }
       }).then(resp => {
-        console.log(resp);
+        this.applyList = resp.data.data;
       });
     }
   },
@@ -78,8 +79,9 @@ export default {
                   />
                 </Col>
               </Row>
-              <ExamineCard />
-              <GlobalAdaptionCard />
+              {this.applyList.map(() => {
+                // <GlobalAdaptionCard {...{}} />;
+              })}
             </div>
           </Tab>
           <Tab name={1} title="待审批" />

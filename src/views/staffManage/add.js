@@ -1,8 +1,9 @@
+import Vue from "vue";
 import S from "./add.module.scss";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import StaffAdd from "@/components/StaffList/StaffAdd";
 import { get_store_list, get_staff_add } from "@/api/index";
-export default {
+export default Vue.extend({
   data() {
     return {
       title: "新增员工",
@@ -12,7 +13,7 @@ export default {
   },
   computed: {
     isShop() {
-      this.shopList.map(v => this.shopName.push(v.title));
+      this.shopName.concat(this.shopList.map(v => v.title));
       console.log("shopName", this.shopName);
       return this.shopName;
     }
@@ -58,4 +59,4 @@ export default {
       </div>
     );
   }
-};
+});

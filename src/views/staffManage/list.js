@@ -2,7 +2,7 @@ import S from "./logList.module.scss";
 import { Button } from "vant";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import StaffList from "@/components/StaffList/StaffList";
-import { get_staff_list } from "@/api/index";
+import { get_staff_list, get_staff_delete } from "@/api/index";
 export default {
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   methods: {
     getStaffList() {
       get_staff_list().then(resp => {
-        this.data = resp.data;
+        this.data = resp.data.data;
         console.log(this.data);
       });
     },
@@ -32,7 +32,12 @@ export default {
           <GlobalHeader {...{ props: { title: this.title } }} />
           <StaffList
             {...{
-              props: { data: this.data }
+              props: { data: this.data },
+              on: {
+                deleteThis: id => {
+                  get_staff_delete(id).then(resp => (this.data = resp));
+                }
+              }
             }}
           />
           <div class={S.button}>

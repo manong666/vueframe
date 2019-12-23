@@ -7,60 +7,72 @@ import { merge } from "lodash";
 /**
  * @description 登录接口
  */
-export const get_login = () =>
-  // param =>
-  // http.request(
-  //   merge(
-  //     {
-  //       url: api_URL.login
-  //     },
-  //     param
-  //   )
-  // );
-  import("@/mock/login").then(resp => resp.default);
-/**
- * @description 首页接口
- */
-export const get_index = () =>
+export const get_login =
   // param =>
   //   http.request(
   //     merge(
   //       {
-  //         url: api_URL.index
+  //         url: api_URL.login,
+  //         method: "post",
+  //         headers: { "content-type": "application/json;charset=UTF-8" },
+  //         data: {}
   //       },
   //       param
   //     )
   //   );
-  import("@/mock/userInfo").then(resp => resp.default);
+  () => import("@/mock/login").then(resp => resp.default);
+/**
+ * @description 首页接口
+ */
+export const get_index = param =>
+  http.request(
+    merge(
+      {
+        url: api_URL.index,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
+      },
+      param
+    )
+  );
+// () =>
+// import("@/mock/userInfo").then(resp => resp.default);
 /**
  * @description 积分排名查询接口
  */
-export const get_integralQuery = () =>
-  import("@/mock/integralRank").then(resp => resp.default);
-// param =>
-//   http.request(
-//     merge(
-//       {
-//         url: api_URL.integralQuery
-//       },
-//       param
-//     )
-//   );
+export const get_integralQuery = param =>
+  http.request(
+    merge(
+      {
+        url: api_URL.integralQuery,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
+      },
+      param
+    )
+  );
+// () =>
+//   import("@/mock/integralRank").then(resp => resp.default);
 
 /**
  * @description 奖券排名查询接口
  */
-export const get_ticketQuery = () =>
-  import("@/mock/lotteryRank").then(resp => resp.default);
-// param =>
-//   http.request(
-//     merge(
-//       {
-//         url: api_URL.ticketQuery
-//       },
-//       param
-//     )
-//   );
+export const get_ticketQuery = param =>
+  http.request(
+    merge(
+      {
+        url: api_URL.ticketQuery,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
+      },
+      param
+    )
+  );
+// () =>
+// import("@/mock/lotteryRank").then(resp => resp.default);
 
 /**
  * @description 我的_申请列表接口
@@ -69,7 +81,10 @@ export const get_applyList = param =>
   http.request(
     merge(
       {
-        url: api_URL.applyList
+        url: api_URL.applyList,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -82,7 +97,10 @@ export const get_applyDetailList = param =>
   http.request(
     merge(
       {
-        url: api_URL.applyDetailList
+        url: api_URL.applyDetailList,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -91,17 +109,20 @@ export const get_applyDetailList = param =>
 /**
  * @description 我的_申请积分接口
  */
-export const get_applyIntegral = () =>
-  // param =>
-  //   http.request(
-  //     merge(
-  //       {
-  //         url: api_URL.applyIntegral
-  //       },
-  //       param
-  //     )
-  //   );
-  import("@/mock/applyRuleResult").then(resp => resp.default);
+export const get_applyIntegral = param =>
+  http.request(
+    merge(
+      {
+        url: api_URL.applyIntegral,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
+      },
+      param
+    )
+  );
+//   () =>
+// import("@/mock/applyRuleResult").then(resp => resp.default);
 /**
  * @description 我的_奖项名称和对应ID列表接口
  */
@@ -112,9 +133,10 @@ export const get_integralNameList =
     http.request(
       merge(
         {
-          method: "post",
           url: api_URL.integralNameList,
-          headers: { "content-type": "application/json;charset=UTF-8" }
+          method: "post",
+          headers: { "content-type": "application/json;charset=UTF-8" },
+          data: {}
         },
         param
       )
@@ -127,7 +149,10 @@ export const get_integralDetailQuery = param =>
   http.request(
     merge(
       {
-        url: api_URL.integralDetailQuery
+        url: api_URL.integralDetailQuery,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -140,7 +165,10 @@ export const get_list = param =>
   http.request(
     merge(
       {
-        url: api_URL.list
+        url: api_URL.list,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -153,7 +181,10 @@ export const get_detailList = param =>
   http.request(
     merge(
       {
-        url: api_URL.detailList
+        url: api_URL.detailList,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -166,7 +197,10 @@ export const get_info = param =>
   http.request(
     merge(
       {
-        url: api_URL.info
+        url: api_URL.info,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -181,7 +215,10 @@ export const get_staff_list = () =>
 //   http.request(
 //     merge(
 //       {
-//         url: api_URL.staff_list
+//         url: api_URL.staff_list,
+//         method: "post",
+//         headers: { "content-type": "application/json;charset=UTF-8" },
+//         data: {}
 //       },
 //       param
 //     )
@@ -196,7 +233,10 @@ export const get_staff_detailList = () =>
 //   http.request(
 //     merge(
 //       {
-//         url: api_URL.staff_detailList
+//         url: api_URL.staff_detailList,
+//         method: "post",
+//         headers: { "content-type": "application/json;charset=UTF-8" },
+//         data: {}
 //       },
 //       param
 //     )
@@ -209,7 +249,10 @@ export const get_staff_delete = param =>
   http.request(
     merge(
       {
-        url: api_URL.staff_delete
+        url: api_URL.staff_delete,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -222,7 +265,10 @@ export const get_staff_add = param =>
   http.request(
     merge(
       {
-        url: api_URL.staff_add
+        url: api_URL.staff_add,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -250,7 +296,10 @@ export const get_encourageStaff_add = param =>
   http.request(
     merge(
       {
-        url: api_URL.encourageStaff_add
+        url: api_URL.encourageStaff_list,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -263,7 +312,10 @@ export const get_encourageStaff_delete = param =>
   http.request(
     merge(
       {
-        url: api_URL.encourageStaff_delete
+        url: api_URL.encourageStaff_add,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -272,17 +324,20 @@ export const get_encourageStaff_delete = param =>
 /**
  * @description 门店列表接口
  */
-export const get_store_list = () =>
-  import("@/mock/shopList").then(resp => resp.default);
-// param =>
-//   http.request(
-//     merge(
-//       {
-//         url: api_URL.store_list
-//       },
-//       param
-//     )
-//   );
+export const get_store_list =
+  // param =>
+  //   http.request(
+  //     merge(
+  //       {
+  //         url: api_URL.store_list,
+  //         method: "post",
+  //         headers: { "content-type": "application/json;charset=UTF-8" },
+  //         data: {}
+  //       },
+  //       param
+  //     )
+  //   );
+  () => import("@/mock/shopList").then(resp => resp.default);
 
 /**
  * @description 门店详情接口
@@ -293,7 +348,10 @@ export const get_store_detailList = () =>
 //   http.request(
 //     merge(
 //       {
-//         url: api_URL.store_detailList
+//         url: api_URL.store_detailList,
+//         method: "post",
+//         headers: { "content-type": "application/json;charset=UTF-8" },
+//         data: {}
 //       },
 //       param
 //     )
@@ -306,7 +364,10 @@ export const get_store_add = param =>
   http.request(
     merge(
       {
-        url: api_URL.store_add
+        url: api_URL.store_add,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -319,7 +380,10 @@ export const get_store_delete = param =>
   http.request(
     merge(
       {
-        url: api_URL.store_delete
+        url: api_URL.store_delete,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -328,17 +392,20 @@ export const get_store_delete = param =>
 /**
  * @description 积分规则列表查询
  */
-export const get_rule_list = () =>
-  // param =>
-  //   http.request(
-  //     merge(
-  //       {
-  //         url: api_URL.rule_list
-  //       },
-  //       param
-  //     )
-  //   );
-  import("@/mock/ruleList").then(resp => resp.default);
+export const get_rule_list = param =>
+  http.request(
+    merge(
+      {
+        url: api_URL.rule_list,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
+      },
+      param
+    )
+  );
+// () =>
+// import("@/mock/ruleList").then(resp => resp.default);
 /**
  * @description 积分规则列表详情
  */
@@ -346,7 +413,10 @@ export const get_rule_detailList = param =>
   http.request(
     merge(
       {
-        url: api_URL.rule_detailList
+        url: api_URL.rule_detailList,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -359,7 +429,10 @@ export const get_rule_add = param =>
   http.request(
     merge(
       {
-        url: api_URL.rule_add
+        url: api_URL.rule_add,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )
@@ -372,7 +445,10 @@ export const get_rule_delete = param =>
   http.request(
     merge(
       {
-        url: api_URL.rule_delete
+        url: api_URL.rule_delete,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
       },
       param
     )

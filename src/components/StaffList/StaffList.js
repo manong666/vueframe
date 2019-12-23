@@ -17,6 +17,9 @@ export default {
           id
         }
       });
+    },
+    deleteStaffInfo(id) {
+      this.$emit("deleteThis", id);
     }
   },
   render() {

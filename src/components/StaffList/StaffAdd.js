@@ -25,17 +25,17 @@ export default {
       this.isShow = true;
     },
     onConfirm(value) {
-      this.shopTitle = value;
       this.isShow = false;
-      this.c_item.storeId = this.shopList.find(
-        v => v.title === this.shopTitle
-      )?.id;
+      this.c_item.storeId = value.id;
+      this.c_item.storeName = value.title;
       console.log(this.c_item.storeId);
+      console.log("value", value);
     },
     onCancel() {
       this.isShow = false;
     },
     saveStaff() {
+      console.log("save", this.c_item);
       this.$emit("saveItem", this.c_item);
     }
   },
@@ -61,7 +61,7 @@ export default {
           readonly={true}
           clickable
           label="门店"
-          value={this.shopTitle}
+          value={this.c_item.storeName}
           placeholder="请选择门店"
           onClick={this.showPicker}
         />
@@ -85,7 +85,8 @@ export default {
             {...{
               props: {
                 "show-toolbar": true,
-                columns: this.shopName,
+                columns: this.shopList,
+                "value-key": "title",
                 title: "门店名称"
               },
               on: { confirm: this.onConfirm, cancel: this.onCancel }

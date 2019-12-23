@@ -210,6 +210,18 @@ export default new Router({
           name: "storeManageDetail",
           title: "门店详情",
           component: () => import("@/views/storeManage/detail")
+        },
+        {
+          path: "addStore",
+          name: "storeManageAdd",
+          title: "新增门店",
+          component: () => import("@/views/storeManage/add")
+        },
+        {
+          path: "editStore/:id",
+          name: "storeManageEdit",
+          title: "编辑门店",
+          component: () => import("@/views/storeManage/edit")
         }
       ]
     },

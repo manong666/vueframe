@@ -38,7 +38,7 @@ export default {
                   userName: "",
                   phoneNo: "",
                   idCard: "",
-                  storeId: "",
+                  storeName: "",
                   workTime: "0000-00-00",
                   diploma: "",
                   speciality: ""
@@ -49,6 +49,7 @@ export default {
               },
               on: {
                 saveItem: val => {
+                  console.log("val", val);
                   get_staff_add(val).then(resp => (this.data = resp));
                 }
               }

@@ -1,8 +1,18 @@
 import S from "./edit.module.scss";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import StaffAdd from "@/components/StaffList/StaffAdd";
-import { get_store_list, get_staff_detailList } from "@/api/index";
+import {
+  get_store_list,
+  get_staff_detailList,
+  get_staff_add
+} from "@/api/index";
 export default {
+  beforeRouteEnter(to, form, next) {
+    next(vm => {
+      vm.getData();
+      vm.getShopList();
+    });
+  },
   data() {
     return {
       title: "编辑员工",
@@ -13,12 +23,13 @@ export default {
         userName: "",
         phoneNo: "",
         idCard: "",
-        storeId: "",
+        storeName: "",
         workTime: "",
         diploma: "",
         speciality: ""
       },
-      text: "保存"
+      text: "保存",
+      shopTitle: ""
     };
   },
   computed: {
@@ -28,15 +39,12 @@ export default {
       return this.shopName;
     }
   },
-  mounted() {
-    this.getData();
-    this.getShopList();
-  },
+  mounted() {},
   methods: {
     getData() {
       const id = this.$router.currentRoute.params.id;
       get_staff_detailList(id).then(resp => {
-        this.data = resp.data;
+        this.data = resp.data.data;
         this.item = this.data.find(v => {
           if (id === v.userId) {
             return true;
@@ -61,6 +69,14 @@ export default {
                 shopList: this.shopList,
                 shopName: this.isShop,
                 text: "保存"
+              },
+              on: {
+                saveItem: val => {
+                  console.log("val", JSON.stringify(val));
+                  get_staff_add(JSON.stringify(val)).then(
+                    resp => (this.data = resp)
+                  );
+                }
               }
             }}
           />

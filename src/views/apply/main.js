@@ -17,14 +17,17 @@ export default {
       columns: [],
       ruleList: [],
       commitList: [],
-      number: 0
+      number: 1
     };
   },
   computed: {
     isRepeat() {
       this.children.map(kid => {
-        this.columns.splice(this.columns.findIndex(v => v === kid.reward), 1);
+        console.log(this.columns.findIndex(v => v === kid.reward));
+        this.columns.findIndex(v => v === kid.reward) !== -1 &&
+          this.columns.splice(this.columns.findIndex(v => v === kid.reward), 1);
       });
+      console.log(this.columns);
       return this.columns;
     }
   },
@@ -35,7 +38,14 @@ export default {
     getRuleList() {
       get_integralNameList().then(resp => {
         resp.data.data.map(v => this.columns.push(v.reward_punish_name));
-        this.ruleList = resp.data.data;
+        this.ruleList = resp.data.data.map(v => {
+          var {
+            reward_punish_name: name,
+            reward_punish_id: id,
+            reward_punish_integral: price
+          } = v;
+          return { name, id, price };
+        });
         console.log("columns", this.columns, "ruleList", this.ruleList);
       });
     },
@@ -44,20 +54,32 @@ export default {
     },
     remove(title) {
       this.children.splice(this.children.findIndex(v => v.reward === title), 1);
+      this.columns.push(title);
     },
     commit() {
-      this.commitList = this.children.map(kid =>
-        JSON.parse(
-          JSON.stringify(this.ruleList.find(rule => rule.name === kid.reward))
-        )
+      this.commitList = this.children.map(
+        kid =>
+          kid.reward !== "请选择奖扣名称" &&
+          JSON.parse(
+            JSON.stringify(this.ruleList.find(rule => rule.name === kid.reward))
+          )
       );
-      this.children.map(kid => {
-        this.commitList.find(v => v.name === kid.reward).price =
-          kid.number * this.commitList.find(v => v.name === kid.reward).price;
+      this.children.forEach(kid => {
+        this.commitList.find(v => v.name === kid.reward)?.price &&
+          (this.commitList.find(v => v.name === kid.reward).price =
+            kid.number *
+            this.commitList.find(v => v.name === kid.reward).price);
       });
-      console.log(this.commitList);
+      const commitArr = this.commitList.map(v => {
+        const obj = {
+          rewardPunishId: v.id,
+          userId: this.$store.state.user.info.userId,
+          rewardNum: this.number
+        };
+        return obj;
+      });
       get_applyIntegral({
-        data: {}
+        data: commitArr
       }).then(resp => {
         if (resp.code === "0001") {
           Toast("提交成功");

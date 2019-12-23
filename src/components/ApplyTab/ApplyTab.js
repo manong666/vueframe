@@ -1,6 +1,7 @@
 import { Tabs, Tab, Row, Col, Search, Cell, Popup, DatetimePicker } from "vant";
 import { get_applyList } from "@/api/index";
 import ExamineCard from "@/components/ExamineCard/ExamineCard";
+import GlobalAdaptionCard from "@/components/GlobalAdaptionCard/GlobalAdaptionCard";
 import moment from "moment";
 import S from "./ApplyTab.module.scss";
 export default {
@@ -24,11 +25,11 @@ export default {
     getExamineList() {
       get_applyList({
         data: {
-          userId: 2,
-          startTime: "2019-10-02 00:00:00",
-          endTime: "2019-12-04 00:00:00",
-          bossApprovalState: "03",
-          rewardPunishName: "卖"
+          userId: 3,
+          startTime: "",
+          endTime: "",
+          bossApprovalState: "",
+          rewardPunishName: ""
         }
       }).then(resp => {
         console.log(resp);
@@ -78,6 +79,7 @@ export default {
                 </Col>
               </Row>
               <ExamineCard />
+              <GlobalAdaptionCard />
             </div>
           </Tab>
           <Tab name={1} title="待审批" />

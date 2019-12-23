@@ -47,7 +47,11 @@ export default {
           {...{ on: { load: this.onLoad } }}
         >
           {this.showList.map((v, i) => (
-            <Cell slot="default" title={`${i} ${v.name}`} value={v.lottery} />
+            <Cell
+              slot="default"
+              title={`${i} ${v.userName}`}
+              value={v.rewardNum}
+            />
           ))}
         </List>
       </div>

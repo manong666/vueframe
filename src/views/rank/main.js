@@ -12,11 +12,11 @@ export default {
   destroyed() {},
   render() {
     return (
-      <div class={S.main}>
+      <div class={S.mainPage}>
         <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
-          <Cell title="积分排名" size="large" to="/rank/integral" is-link />
-          <Cell title="奖券排名" size="large" to="/rank/lottery" is-link />
+          <Cell title="积分排名" to="/rank/integral" is-link />
+          <Cell title="奖券排名" to="/rank/lottery" is-link />
         </div>
 
         <GlobalTab />

@@ -1,0 +1,44 @@
+.total {
+  background: #63b8ff;
+  .lineOne {
+    display: flex;
+    justify-content: space-between;
+    .user {
+      font-size: 14px;
+    }
+    .post {
+      font-size: 12px;
+      text-align: center;
+    }
+    .options {
+      font-size: 14px;
+    }
+  }
+  .lineTwo {
+    text-align: center;
+    .monthIntegral {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .detail {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .rankMonth {
+      font-size: 14px;
+    }
+  }
+  .lineThree {
+    display: flex;
+    justify-content: space-between;
+    .integral {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .rank {
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}

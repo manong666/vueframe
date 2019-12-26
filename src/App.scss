@@ -1,0 +1,18 @@
+.view {
+  padding-top: 0.001px;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1000px;
+  -webkit-overflow-scrolling: touch;
+}
+.viewCont {
+  width: 750px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  transform-origin: 0px 0px;
+}
+::-webkit-scrollbar {
+  display: none;
+}

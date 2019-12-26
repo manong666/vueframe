@@ -1,0 +1,44 @@
+.storeList{
+    .title{
+        font-weight:bold;
+        height: 50px;
+        font-size: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        border-bottom: 1px solid #eee8e8;
+        color:#323233;
+        padding:0 10%;
+        .titleName{
+            width:40%;
+        }
+        .titleNum{
+            width: 40%;
+            // margin-right:10%;
+        }
+    }
+    .content{
+        display: flex;
+        height:60px;
+        align-items: center;
+        justify-content: space-around;
+        border-bottom: 1px solid #eee8e8;
+        font-size: 14px;
+        color:#323233;
+        margin-left:15px;
+        .infos{
+            width:75%;
+            display: flex;
+            .store{
+                width:75%;
+                // text-align: center;
+            }
+            .manager{
+                width:25%;
+                text-align: center;
+            }
+        }
+    }
+}

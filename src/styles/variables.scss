@@ -1,0 +1,19 @@
+$primary-color: #f40;
+
+:export {
+  primaryColor: $primary-color;
+}
+
+@mixin textOverHide($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+}
+
+@mixin OverHide1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}

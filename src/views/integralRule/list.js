@@ -36,7 +36,9 @@ export default {
             props: { data: this.data },
             on: {
               deleteItem: id => {
-                get_rule_delete(id).then(resp => (this.data = resp));
+                get_rule_delete({ data: { rewardPunishId: id } }).then(
+                  resp => (this.data = resp)
+                );
               }
             }
           }}

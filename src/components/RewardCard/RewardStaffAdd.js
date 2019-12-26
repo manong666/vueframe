@@ -8,7 +8,6 @@ export default {
     columns: Array,
     ruleList: Array,
     shopList: Array,
-    staffLists: Array,
     shopName: Array,
     text: String
   },
@@ -26,11 +25,9 @@ export default {
       staffName: "",
       id: 10,
       item: {
-        rewardPunishId: 0,
-        storeId: 0,
-        userId: 0,
-        rewardPunishIntegral: 0,
-        rewardNumCount: 1
+        rule_store: 0,
+        rule_user: 0,
+        rule_num: 0
       }
     };
   },
@@ -39,32 +36,24 @@ export default {
   methods: {
     getRule() {
       this.rule =
-        this.ruleList.find(v => v.rewardPunishName === this.reward)
-          ?.rewardPunishIntegral || "";
+        this.ruleList.find(v => v.title === this.reward)?.integral || "";
       console.log("hhghhh", this.rule);
     },
     getShopStaffDetails() {
-      get_store_detailList({ data: { storeId: this.id } }).then(resp => {
+      get_store_detailList({ id: this.id }).then(resp => {
         const dataList = resp.data.data;
-        console.log("detailList", JSON.stringify(dataList));
+
         const list =
-          dataList.find(v => v.storeName === this.shopTitle)?.storeStaff || [];
+          dataList.find(v => v.title === this.shopTitle)?.shop_staffs || [];
         this.staffList = list;
-        console.log("liststaff", this.staffLists);
         console.log("list", JSON.stringify(list));
         this.nameList = [];
-        // this.staffList.map(v => this.nameList.push(v.staff_name));
-        this.nameList.push(
-          ...this.staffLists.filter(v => this.staffList.includes(v.userId))
-        );
-        console.log("namelist", this.nameList);
+        this.staffList.map(v => this.nameList.push(v.staff_name));
       });
     },
     getShopId() {
-      this.id = this.shopList.find(
-        v => v.storeName === this.shopTitle
-      )?.storeId;
-      this.item.storeId = this.id;
+      this.id = this.shopList.find(v => v.title === this.shopTitle)?.id;
+      this.item.rule_store = this.id;
     },
     showPicker() {
       this.isShow = true;
@@ -76,9 +65,8 @@ export default {
       this.isLook = true;
     },
     onConfirm(value) {
-      this.reward = value.rewardPunishName;
+      this.reward = value;
       this.isShow = false;
-      this.item.rewardPunishId = value.rewardPunishId;
       this.getRule();
     },
     onConfirms(value) {
@@ -88,12 +76,11 @@ export default {
       this.getShopStaffDetails();
     },
     onConfirmal(value) {
-      this.staffName = value.userName;
+      this.staffName = value;
       this.isLook = false;
-      //   this.item.userId =
-      //     this.staffList.find(v => v.staff_name === this.staffName)?.staff_id ||
-      //     0;
-      this.item.userId = value.userId;
+      this.item.rule_user =
+        this.staffList.find(v => v.staff_name === this.staffName)?.staff_id ||
+        0;
     },
     onCancel() {
       this.isShow = false;
@@ -101,8 +88,7 @@ export default {
       this.isLook = false;
     },
     saveRule() {
-      this.item.rewardPunishIntegral = Number(this.rule) * this.stepNum;
-      this.item.rewardNumCount = this.stepNum;
+      this.item.rule_num = Number(this.rule) * this.stepNum;
       console.log("this.item", this.item);
       this.$emit("saveItem", this.item);
     }
@@ -156,9 +142,8 @@ export default {
         <Popup v-model={this.isShow} position="bottom">
           <Picker
             show-toolbar
-            columns={this.ruleList}
+            columns={this.columns}
             title="奖项名称"
-            value-key="rewardPunishName"
             on-confirm={this.onConfirm}
             on-cancel={this.onCancel}
           />
@@ -181,7 +166,6 @@ export default {
               props: {
                 "show-toolbar": true,
                 columns: this.nameList,
-                "value-key": "userName",
                 title: "员工名称"
               },
               on: { confirm: this.onConfirmal, cancel: this.onCancel }

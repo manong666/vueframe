@@ -6,23 +6,23 @@ export default {
     data: [
       {
         id: 100,
-        storeName: "美林化妆品东路店",
-        storeOwer: "王一"
+        title: "美林化妆品东路店",
+        shop_owner: "王一"
       },
       {
         id: 200,
-        storeName: "美林化妆品西路店",
-        storeOwer: "李二"
+        title: "美林化妆品西路店",
+        shop_owner: "李二"
       },
       {
         id: 300,
-        storeName: "美林化妆品南路店",
-        storeOwer: "何三三"
+        title: "美林化妆品南路店",
+        shop_owner: "何三三"
       },
       {
         id: 400,
-        storeName: "美林化妆品北路店",
-        storeOwer: "林五"
+        title: "美林化妆品北路店",
+        shop_owner: "林五"
       }
     ]
   }

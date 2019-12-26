@@ -17,9 +17,6 @@ export default {
           id
         }
       });
-    },
-    deleteStaffInfo(id) {
-      this.$emit("deleteThis", id);
     }
   },
   render() {
@@ -29,20 +26,20 @@ export default {
           <div class={S.content}>
             <div class={S.infos}>
               <div class={S.staff}>
-                <div class={S.name}>{v.userName}</div>
-                <div class={S.count}>{v.phoneNo}</div>
+                <div class={S.name}>{v.name}</div>
+                <div class={S.count}>{v.telephone}</div>
               </div>
-              <div class={S.ruleName}>{v.storeName}</div>
+              <div class={S.ruleName}>{v.store_name}</div>
             </div>
             <Icon
               name="edit"
               size="16px"
-              onClick={() => this.editStaffInfo(v.userId)}
+              onClick={() => this.editStaffInfo(v.staff_id)}
             />
             <Icon
               name="delete"
               size="16px"
-              onClick={() => this.deleteStaffInfo(v.userId)}
+              onClick={() => this.deleteStaffInfo(v.staff_id)}
             />
           </div>
         ))}

@@ -16,7 +16,6 @@ export default {
   methods: {
     saveRule() {
       this.$emit("chagneItem", this.c_item);
-      console.log("saveitem", JSON.stringify(this.c_item));
     }
   },
 
@@ -24,7 +23,7 @@ export default {
     return (
       <div class={S.rule}>
         <Field
-          v-model={this.c_item.rewardPunishName}
+          v-model={this.c_item.title}
           label="奖扣名称"
           placeholder="请填写奖扣名称"
         />
@@ -32,7 +31,7 @@ export default {
           <div class={S.text}>积分</div>
           <div class={S.txt}>
             <Stepper
-              v-model={this.c_item.rewardPunishIntegral}
+              v-model={this.c_item.integral}
               min="-900000"
               integer
               class={S.stepper}

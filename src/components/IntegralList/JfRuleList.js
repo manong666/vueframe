@@ -36,20 +36,20 @@ export default {
         <div class={S.ruleList}>
           {this.data.map(v => (
             <div class={S.content}>
-              <div class={S.ruleName}>{v.rewardPunishName}</div>
+              <div class={S.ruleName}>{v.title}</div>
               <div class={S.count}>
-                <i>{v.rewardPunishIntegral}</i>分/每个
+                <i>{v.integral}</i>分/每个
               </div>
               <Icon
                 name="edit"
                 size="16px"
-                onClick={() => this.editRule(v.rewardPunishId)}
+                onClick={() => this.editRule(v.id)}
                 class={S.edit}
               />
               <Icon
                 name="delete"
                 size="16px"
-                onClick={() => this.deleteRule(v.rewardPunishId)}
+                onClick={() => this.deleteRule(v.id)}
               />
             </div>
           ))}

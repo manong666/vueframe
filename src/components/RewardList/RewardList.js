@@ -22,15 +22,15 @@ export default {
           <div class={S.content}>
             <div class={S.infos}>
               <div class={S.staff}>
-                <div class={S.name}>{v.userName}</div>
-                <div class={S.count}>{v.rewardPunishIntegral}分</div>
+                <div class={S.name}>{v.staff_name}</div>
+                <div class={S.count}>{v.add_integral}分</div>
               </div>
-              <div class={S.ruleName}>{v.rewardPunishName}</div>
+              <div class={S.ruleName}>{v.rule_name}</div>
             </div>
             <Icon
               name="delete"
               size="16px"
-              onClick={() => this.deleteStaffRule(v.rewardPunishId)}
+              onClick={() => this.deleteStaffRule(v.log_id)}
             />
           </div>
         ))}

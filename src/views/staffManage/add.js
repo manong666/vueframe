@@ -13,7 +13,7 @@ export default Vue.extend({
   },
   computed: {
     isShop() {
-      this.shopName.concat(this.shopList.map(v => v.storeName));
+      this.shopName.concat(this.shopList.map(v => v.title));
       console.log("shopName", this.shopName);
       return this.shopName;
     }
@@ -39,7 +39,7 @@ export default Vue.extend({
                   userName: "",
                   phoneNo: "",
                   idCard: "",
-                  storeName: "",
+                  storeId: "",
                   workTime: "0000-00-00",
                   diploma: "",
                   speciality: ""
@@ -50,8 +50,7 @@ export default Vue.extend({
               },
               on: {
                 saveItem: val => {
-                  console.log("val", val);
-                  get_staff_add({ data: val }).then(resp => (this.data = resp));
+                  get_staff_add(val).then(resp => (this.data = resp));
                 }
               }
             }}

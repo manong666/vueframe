@@ -70,7 +70,24 @@ export default {
   },
   methods: {
     getUserData() {
-      get_index().then(resp => (this.data = resp));
+      get_index({
+        data: {
+          userId: this.$store.state.user.info.userId
+        }
+      }).then(resp => (this.data = resp.data.data[0]));
     }
   }
 };
+
+// integralMonth: -195
+// integralToday: null
+// integralYear: -145
+// rankWeek: 2
+// rankMonth: 2
+// role_id: "03"
+// user_name: "李四"
+// rankToday: null
+// rank: 2
+// integralWeek: -140
+// rankYear: 2
+// integralTotal: -145

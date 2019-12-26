@@ -113,6 +113,7 @@ export default Vue.extend({
           <Col span="10">
             <Cell
               title={startTime}
+              title-style="text-align:center"
               center
               // size="large"
               // class={S.date}
@@ -133,12 +134,13 @@ export default Vue.extend({
             </Popup>
           </Col>
           <Col span="4">
-            <Cell title="——" center />
+            <Cell title="至" center />
           </Col>
           <Col span="10">
             <Cell
               title={endTime}
               center
+              title-style="text-align:center"
               // size="large"
               // class={S.date}
               {...{ on: { click: this.onClickEnd } }}

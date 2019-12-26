@@ -48,8 +48,8 @@ export default {
   methods: {
     onClick() {
       this.$store.dispatch("user/login", {
-        telephone: this.userName,
-        password: this.passWord
+        phone: this.userName,
+        pwd: this.passWord
       });
       this.$router.push({ name: "main" });
     }

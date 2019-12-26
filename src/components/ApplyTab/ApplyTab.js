@@ -52,15 +52,25 @@ export default {
       this.$router.push(`applyOne/${id}`);
     },
     changTab(value) {
-      const obj = {
-        key: "type",
-        value: value === "00" ? "" : value
-      };
-      this.searchData.splice(
-        this.searchData.findIndex(v => v.key === "type"),
-        1,
-        obj
-      );
+      const arr = [
+        {
+          key: "type",
+          value: value === "00" ? "" : value
+        },
+        {
+          key: "searchTxt",
+          value: ""
+        },
+        {
+          key: "startTime",
+          value: "开始日期"
+        },
+        { key: "endTime", value: "结束日期" }
+      ];
+
+      this.searchData.splice(0, this.searchData.length);
+      this.searchData = this.searchData.concat(arr);
+      console.log(this.searchData);
       this.getExamineList(this.searchData);
     }
   },

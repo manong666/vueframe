@@ -18,12 +18,19 @@
     display: flex;
     flex-wrap: wrap;
     align-content:space-between;
-    padding:10px;
+    padding:10px 0;
     .price{
       margin-top:5px;
       font-size:16px;
       width: 100%;
       color:#FF6A6A;
+      text-align: center;
+    }.pricefu{
+      margin-top:5px;
+      font-size:16px;
+      width: 100%;
+      color:#5CACEE;
+      text-align: center;
     }
     .button{
       width: 100%;

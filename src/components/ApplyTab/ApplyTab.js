@@ -1,92 +1,172 @@
-import { Tabs, Tab, Row, Col, Search, Cell, Popup, DatetimePicker } from "vant";
+import { Tabs, Tab } from "vant";
 import { get_applyList } from "@/api/index";
 // import ExamineCard from "@/components/ExamineCard/ExamineCard";
-// import GlobalAdaptionCard from "@/components/GlobalAdaptionCard/GlobalAdaptionCard";
-import moment from "moment";
-import S from "./ApplyTab.module.scss";
+import GlobalAdaptionCard from "@/components/GlobalAdaptionCard/GlobalAdaptionCard";
+import SearchByTimeAndTxt from "../SearchByTimeAndTxt/SearchByTimeAndTxt";
 export default {
   data() {
     return {
-      index: 0,
-      isShow: false,
-      currentDate: new Date(),
-      date: "日期",
-      applyList: []
+      applyList: [],
+      searchData: [
+        {
+          key: "searchTxt",
+          value: ""
+        },
+        {
+          key: "startTime",
+          value: "开始日期"
+        },
+        { key: "endTime", value: "结束日期" },
+        { key: "type", value: "" }
+      ]
     };
   },
   props: {},
   methods: {
-    onClick() {
-      this.isShow = true;
-    },
-    onChangeTime(value) {
-      this.date = moment(value).format("YYYY.MM.DD");
-      this.isShow = false;
-    },
-    getExamineList() {
+    getExamineList(Date1) {
+      const time =
+        (Date1.find(v => v.key === "startTime").value === "开始日期"
+          ? ""
+          : Date1.find(v => v.key === "startTime").value) || "";
+      const endt =
+        (Date1.find(v => v.key === "endTime").value === "结束日期"
+          ? ""
+          : Date1.find(v => v.key === "endTime").value) || "";
+      const rewardPunishName = Date1.find(v => v.key === "searchTxt").value;
+      const bossApprovalState = Date1.find(v => v.key === "type").value;
+      const startTime = new Date(time).getTime() || "";
+      const endTime = new Date(endt).getTime() || "";
       get_applyList({
         data: {
           userId: 3,
-          startTime: "",
-          endTime: "",
-          bossApprovalState: "",
-          rewardPunishName: ""
+          startTime,
+          endTime,
+          bossApprovalState,
+          rewardPunishName
         }
       }).then(resp => {
         this.applyList = resp.data.data;
       });
+    },
+    checkBtn(id) {
+      this.$router.push(`applyOne/${id}`);
+    },
+    changTab(value) {
+      const obj = {
+        key: "type",
+        value: value === "00" ? "" : value
+      };
+      this.searchData.splice(
+        this.searchData.findIndex(v => v.key === "type"),
+        1,
+        obj
+      );
+      this.getExamineList(this.searchData);
     }
   },
   mounted() {
-    this.getExamineList();
+    this.getExamineList(this.searchData);
   },
   render() {
     return (
       <div>
-        <Tabs v-model={this.index} animated swipeable>
-          <Tab name={0} title="全部">
+        <Tabs v-model={this.index} animated swipeable on-change={this.changTab}>
+          <Tab name="00" title="全部">
             <div>
-              <Row>
-                <Col span="8">
-                  <Cell
-                    title={this.date}
-                    center
-                    size="large"
-                    class={S.date}
-                    {...{ on: { click: this.onClick } }}
-                  />
-                  <Popup
-                    v-model={this.isShow}
-                    overlay
-                    position="bottom"
-                    style="height:40%"
-                    get-container="body"
-                  >
-                    <DatetimePicker
-                      v-model={this.currentDate}
-                      type="date"
-                      {...{ on: { confirm: this.onChangeTime } }}
-                    />
-                  </Popup>
-                </Col>
-                <Col span="16">
-                  <Search
-                    shape="round"
-                    placeholder="请输入搜索内容"
-                    clearable
-                    show-action
-                    action-text="搜索"
-                  />
-                </Col>
-              </Row>
-              {this.applyList.map(() => {
-                // <GlobalAdaptionCard {...{}} />;
-              })}
+              <SearchByTimeAndTxt
+                v-model={this.searchData}
+                {...{ props: { getData: this.getExamineList } }}
+              />
+              {this.applyList.map(v => (
+                <GlobalAdaptionCard
+                  {...{
+                    props: {
+                      msgData: {
+                        id: v.staffRewardPunishId,
+                        title: v.rewardPunishName,
+                        status: v.bossApprovalState,
+                        price: v.integralNumber,
+                        time: v.createTime
+                      },
+                      checkBtn: this.checkBtn
+                    }
+                  }}
+                />
+              ))}
             </div>
           </Tab>
-          <Tab name={1} title="待审批" />
-          <Tab name={2} title="审批通过" />
-          <Tab name={3} title="驳回" />
+          <Tab name="01" title="审批通过">
+            <div>
+              <SearchByTimeAndTxt
+                v-model={this.searchData}
+                {...{ props: { getData: this.getExamineList } }}
+              />
+              {this.applyList.map(v => (
+                <GlobalAdaptionCard
+                  {...{
+                    props: {
+                      msgData: {
+                        id: v.staffRewardPunishId,
+                        title: v.rewardPunishName,
+                        status: v.bossApprovalState,
+                        price: v.integralNumber,
+                        time: v.createTime
+                      },
+                      checkBtn: this.checkBtn
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          </Tab>
+          <Tab name="02" title="驳回">
+            <div>
+              <SearchByTimeAndTxt
+                v-model={this.searchData}
+                {...{ props: { getData: this.getExamineList } }}
+              />
+              {this.applyList.map(v => (
+                <GlobalAdaptionCard
+                  {...{
+                    props: {
+                      msgData: {
+                        id: v.staffRewardPunishId,
+                        title: v.rewardPunishName,
+                        status: v.bossApprovalState,
+                        price: v.integralNumber,
+                        time: v.createTime
+                      },
+                      checkBtn: this.checkBtn
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          </Tab>
+          <Tab name="03" title="待审核">
+            <div>
+              <SearchByTimeAndTxt
+                v-model={this.searchData}
+                {...{ props: { getData: this.getExamineList } }}
+              />
+              {this.applyList.map(v => (
+                <GlobalAdaptionCard
+                  {...{
+                    props: {
+                      msgData: {
+                        id: v.staffRewardPunishId,
+                        title: v.rewardPunishName,
+                        status: v.bossApprovalState,
+                        price: v.integralNumber,
+                        time: v.createTime
+                      },
+                      checkBtn: this.checkBtn
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          </Tab>
         </Tabs>
       </div>
     );

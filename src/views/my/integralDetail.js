@@ -1,71 +1,79 @@
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
-import { Row, Col, Search, Cell, Popup, DatetimePicker } from "vant";
-import moment from "moment";
+import { get_integralDetailQuery } from "@/api/index";
 import IntegralDetailTab from "@/components/IntegralDetailTab/IntegralDetailTab";
+import SearchByTimeAndTxt from "@/components/SearchByTimeAndTxt/SearchByTimeAndTxt";
 import S from "./integralDetail.module.scss";
 export default {
   data() {
     return {
       title: "积分明细",
-      currentDate: new Date(),
-      date: "日期",
-      isShow: false,
-      index: 0
+      searchData: [
+        {
+          key: "searchTxt",
+          value: ""
+        },
+        {
+          key: "startTime",
+          value: "开始日期"
+        },
+        { key: "endTime", value: "结束日期" },
+        { key: "type", value: "01" }
+      ],
+      index: 0,
+      detailList: []
     };
   },
-  mounted() {},
+  mounted() {
+    this.getDetail(this.searchData);
+  },
+  computed: {},
+  updated() {},
   destroyed() {},
   render() {
     return (
       <div class={S.main}>
         <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
-          {/* 是否需要封装为组件 */}
-          <Row>
-            <Col span="16">
-              <Search
-                shape="round"
-                placeholder="请输入搜索内容"
-                clearable
-                show-action
-                action-text="搜索"
-              />
-            </Col>
-            <Col span="8">
-              <Cell
-                title={this.date}
-                center
-                size="large"
-                class={S.date}
-                {...{ on: { click: this.onClick } }}
-              />
-              <Popup
-                v-model={this.isShow}
-                overlay
-                position="bottom"
-                style="height:40%"
-                get-container="body"
-              >
-                <DatetimePicker
-                  v-model={this.currentDate}
-                  type="date"
-                  {...{ on: { confirm: this.onChangeTime } }}
-                />
-              </Popup>
-            </Col>
-          </Row>
-          <IntegralDetailTab />
+          <SearchByTimeAndTxt
+            v-model={this.searchData}
+            {...{ props: { getData: this.getDetail } }}
+          />
+          <IntegralDetailTab
+            v-model={this.searchData}
+            {...{
+              props: { detailList: this.detailList, getData: this.getDetail }
+            }}
+          />
         </div>
       </div>
     );
   },
   methods: {
-    onClick() {
-      this.isShow = true;
-    },
-    onChangeTime(value) {
-      this.date = moment(value).format("YYYY.MM.DD");
-      this.isShow = false;
+    getDetail(Date1) {
+      const time =
+        (Date1.find(v => v.key === "startTime").value === "开始日期"
+          ? ""
+          : Date1.find(v => v.key === "startTime").value) || "";
+      const endt =
+        (Date1.find(v => v.key === "endTime").value === "结束日期"
+          ? ""
+          : Date1.find(v => v.key === "endTime").value) || "";
+      const rewardPunishName = Date1.find(v => v.key === "searchTxt").value;
+      const type = Date1.find(v => v.key === "type").value;
+      const startTime = new Date(time).getTime() || "";
+      const endTime = new Date(endt).getTime() || "";
+      // const endTime = "";
+      get_integralDetailQuery({
+        data: {
+          userId: 2,
+          startTime,
+          endTime,
+          type,
+          rewardPunishName
+        }
+      }).then(resp => {
+        this.detailList = resp.data.data;
+      });
     }
   }
 };

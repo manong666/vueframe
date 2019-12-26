@@ -4,7 +4,7 @@ export default {
     code: "0000",
     msg: "登录成功",
     data: {
-      userId: "123456",
+      userId: 4,
       roleID: "01",
       userName: "王世桢",
       total: "1000",

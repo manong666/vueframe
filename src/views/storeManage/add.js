@@ -46,7 +46,7 @@ export default Vue.extend({
               on: {
                 saveStore: val => {
                   console.log("storeparams", val);
-                  get_store_add(val).then(resp => (this.data = resp));
+                  get_store_add({ data: val }).then(resp => (this.data = resp));
                 }
               }
             }}

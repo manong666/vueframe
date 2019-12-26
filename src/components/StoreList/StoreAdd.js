@@ -15,7 +15,11 @@ export default {
         .filter(v => this.item.storeStaff.includes(v.userId))
         .map(v => v.userName)
         .join("，");
-      return { ...this.item, staffName };
+      const storeOwer = this.staffList
+        .filter(v => this.item.storeOwerId == v.userId)
+        .map(v => v.userName)
+        .join("");
+      return { ...this.item, staffName, storeOwer };
     }
   },
   data() {

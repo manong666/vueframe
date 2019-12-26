@@ -34,17 +34,17 @@ export default {
             <div class={S.content}>
               <div class={S.infos}>
                 <div class={S.store}>{v.storeName}</div>
-                <div class={S.manager}>{v.storeOwer}</div>
+                <div class={S.manager}>{v.userName}</div>
               </div>
               <Icon
                 name="edit"
                 size="16px"
-                onClick={() => this.editStoreInfo(v.id)}
+                onClick={() => this.editStoreInfo(v.storeId)}
               />
               <Icon
                 name="delete"
                 size="16px"
-                onClick={() => this.deleteStoreInfo(v.id)}
+                onClick={() => this.deleteStoreInfo(v.storeId)}
               />
             </div>
           ))}

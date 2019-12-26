@@ -2,7 +2,10 @@ import S from "./logList.module.scss";
 import { Button } from "vant";
 import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import RewardList from "@/components/RewardList/RewardList";
-import { get_encourageStaff_list, get_staff_delete } from "@/api/index";
+import {
+  get_encourageStaff_list,
+  get_encourageStaff_delete
+} from "@/api/index";
 export default {
   data() {
     return {
@@ -36,7 +39,9 @@ export default {
               props: { data: this.data },
               on: {
                 deleteThis: id => {
-                  get_staff_delete(id).then(resp => (this.data = resp));
+                  get_encourageStaff_delete({
+                    data: { rewardPunishId: id }
+                  }).then(resp => (this.data = resp));
                 }
               }
             }}

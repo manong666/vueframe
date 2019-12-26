@@ -10,7 +10,11 @@ export default {
   data() {
     return {
       title: "编辑积分规则",
-      item: { id: "235234", title: "", integral: 0 }
+      item: {
+        rewardPunishId: "235234",
+        rewardPunishName: "",
+        rewardPunishIntegral: 0
+      }
     };
   },
   mounted() {
@@ -24,7 +28,7 @@ export default {
       console.log(list instanceof Array, list);
       console.log(id);
       this.item = list.find(v => {
-        if (id === v.id) {
+        if (id === v.rewardPunishId) {
           return true;
         }
       });
@@ -43,7 +47,7 @@ export default {
             },
             on: {
               chagneItem: val => {
-                get_rule_add(val).then(resp => (this.data = resp));
+                get_rule_add({ data: val }).then(resp => (this.data = resp));
               }
             }
           }}

@@ -7,8 +7,8 @@ export default {
   data() {
     return {
       title: "积分排名",
-      value: { date: "日期", store: "111111" },
-      storeList: [],
+      value: { date: "日期", store: "0000" },
+      storeList: [{ value: "0000", text: "门店" }],
       rankList: []
     };
   },
@@ -33,17 +33,16 @@ export default {
   },
   methods: {
     getStoreList() {
-      // TODO:传参没有处理
       get_store_list().then(resp => {
-        this.storeList = resp.storeList.map(v => {
-          let obj = { value: v.id, text: v.title };
-          return obj;
+        resp.data.data.forEach(v => {
+          let obj = { value: v.store_id, text: v.store_name };
+          this.storeList.push(obj);
         });
       });
     },
     getRankList() {
       get_integralQuery().then(resp => {
-        this.rankList = resp.rank;
+        this.rankList = resp.data.data;
       });
     }
   }

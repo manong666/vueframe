@@ -35,7 +35,9 @@ export default {
               props: { data: this.data },
               on: {
                 deleteThis: id => {
-                  get_store_delete(id).then(resp => (this.data = resp));
+                  get_store_delete({ data: { storeId: id } }).then(
+                    resp => (this.data = resp)
+                  );
                 }
               }
             }}

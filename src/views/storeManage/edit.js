@@ -37,18 +37,21 @@ export default {
   methods: {
     getData() {
       const id = this.$router.currentRoute.params.id;
-      get_store_detailList(id).then(resp => {
+      get_store_detailList({ data: { storeId: id } }).then(resp => {
         this.data = resp.data.data;
+        console.log("detaildata", this.data);
         this.item = this.data.find(v => {
-          if (id === v.id) {
+          if (id === v.storeId) {
             return true;
           }
-          console.log("this.item", this.item);
         });
+        console.log("this.item", this.item);
       });
     },
     getStaffList() {
-      get_staff_list().then(resp => (this.staffList = resp.data.data));
+      get_staff_list().then(resp => {
+        this.staffList = resp.data.data;
+      });
     }
   },
   destroyed() {},
@@ -67,7 +70,7 @@ export default {
               on: {
                 saveStore: val => {
                   console.log("storeparams", val);
-                  get_store_add(val).then(resp => (this.data = resp));
+                  get_store_add({ data: val }).then(resp => (this.data = resp));
                 }
               }
             }}

@@ -24,6 +24,7 @@ export default {
         phoneNo: "",
         idCard: "",
         storeName: "",
+        storeId: 0,
         workTime: "",
         diploma: "",
         speciality: ""
@@ -34,7 +35,7 @@ export default {
   },
   computed: {
     isShop() {
-      this.shopList.map(v => this.shopName.push(v.title));
+      this.shopList.map(v => this.shopName.push(v.storeName));
       console.log("shopName", this.shopName);
       return this.shopName;
     }
@@ -43,8 +44,9 @@ export default {
   methods: {
     getData() {
       const id = this.$router.currentRoute.params.id;
-      get_staff_detailList(id).then(resp => {
+      get_staff_detailList({ data: { userId: id } }).then(resp => {
         this.data = resp.data.data;
+        console.log("this.data", this.data);
         this.item = this.data.find(v => {
           if (id === v.userId) {
             return true;
@@ -72,10 +74,7 @@ export default {
               },
               on: {
                 saveItem: val => {
-                  console.log("val", JSON.stringify(val));
-                  get_staff_add(JSON.stringify(val)).then(
-                    resp => (this.data = resp)
-                  );
+                  get_staff_add({ data: val }).then(resp => (this.data = resp));
                 }
               }
             }}

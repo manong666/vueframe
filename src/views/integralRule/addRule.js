@@ -18,14 +18,14 @@ export default {
           {...{
             props: {
               item: {
-                title: "",
-                integral: 5
+                rewardPunishName: "",
+                rewardPunishIntegral: 5
               },
               text: "保存"
             },
             on: {
               chagneItem: val => {
-                get_rule_add(val).then(resp => (this.data = resp));
+                get_rule_add({ data: val }).then(resp => (this.data = resp));
               }
             }
           }}

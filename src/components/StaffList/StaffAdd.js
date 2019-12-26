@@ -26,8 +26,8 @@ export default {
     },
     onConfirm(value) {
       this.isShow = false;
-      this.c_item.storeId = value.id;
-      this.c_item.storeName = value.title;
+      this.c_item.storeId = value.storeId;
+      this.c_item.storeName = value.storeName;
       console.log(this.c_item.storeId);
       console.log("value", value);
     },
@@ -86,7 +86,7 @@ export default {
               props: {
                 "show-toolbar": true,
                 columns: this.shopList,
-                "value-key": "title",
+                "value-key": "storeName",
                 title: "门店名称"
               },
               on: { confirm: this.onConfirm, cancel: this.onCancel }

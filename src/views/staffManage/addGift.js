@@ -4,7 +4,8 @@ import RewardStaffAdd from "@/components/RewardCard/RewardStaffAdd";
 import {
   get_store_list,
   get_store_detailList,
-  get_encourageStaff_add
+  get_encourageStaff_add,
+  get_staff_list
 } from "@/api/index";
 export default {
   data() {
@@ -12,19 +13,20 @@ export default {
       title: "新增员工奖扣",
       ruleList: [],
       shopList: [],
+      staffLists: [],
       columns: [],
       shopName: [],
       shopDetail: [],
       item: {
-        rule_store: 111,
-        rule_user: 123,
-        rule_num: 30
+        storeId: 111,
+        userId: 123,
+        rewardPunishIntegral: 30
       }
     };
   },
   computed: {
     isShop() {
-      this.shopList.map(v => this.shopName.push(v.title));
+      this.shopList.map(v => this.shopName.push(v.storeName));
       console.log("shopName", this.shopName);
       return this.shopName;
     }
@@ -32,16 +34,20 @@ export default {
   mounted() {
     this.getRuleList();
     this.getShopList();
+    this.getStaffList();
   },
   methods: {
     getRuleList() {
       this.ruleList = JSON.parse(localStorage.getItem("ruleList"));
       console.log("奖扣规则列表", this.ruleList);
-      this.ruleList.map(v => this.columns.push(v.title));
+      this.ruleList.map(v => this.columns.push(v.rewardPunishName));
       console.log("columns", this.columns);
     },
     getShopList() {
       get_store_list().then(resp => (this.shopList = resp.data.data));
+    },
+    getStaffList() {
+      get_staff_list().then(resp => (this.staffLists = resp.data.data));
     },
     getShopStaffDetails() {
       get_store_detailList().then(resp => (this.shopDetail = resp.data.data));
@@ -61,12 +67,15 @@ export default {
                 columns: this.columns,
                 ruleList: this.ruleList,
                 shopList: this.shopList,
+                staffLists: this.staffLists,
                 shopName: this.isShop,
                 text: "保存"
               },
               on: {
                 saveItem: val => {
-                  get_encourageStaff_add(val).then(resp => (this.data = resp));
+                  get_encourageStaff_add({ data: val }).then(
+                    resp => (this.data = resp)
+                  );
                 }
               }
             }}

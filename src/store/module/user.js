@@ -11,8 +11,8 @@ export default {
       state.token = token;
     },
     assignInfo(state, info) {
-      console.log(state.info);
       state.info = info;
+      console.log(state.info);
     }
   },
   actions: {
@@ -31,8 +31,10 @@ export default {
       return get_login({ data: { ...params } }).then(resp => {
         commit("assignToken", resp.data["token"]);
         console.log(resp.data["token"]);
-        commit("assignInfo", resp.data.data);
       });
+    },
+    info({ commit }, params) {
+      commit("assignInfo", params);
     }
   }
 };

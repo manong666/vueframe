@@ -71,7 +71,10 @@ export default {
     getUserData() {
       get_index({
         data: {}
-      }).then(resp => (this.data = resp.data.data[0]));
+      }).then(resp => {
+        this.data = resp.data.data[0];
+        this.$store.dispatch("user/info", this.data);
+      });
     }
   }
 };

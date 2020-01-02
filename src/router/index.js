@@ -16,7 +16,6 @@ export default new Router({
   QD,
   // 恢复 上次浏览位置 仅在同一个项目中可用
   scrollBehavior(to, from, savedPosition) {
-    console.log("scrollBehavior", to, from, savedPosition);
     if (savedPosition) {
       return savedPosition;
     } else {

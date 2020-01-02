@@ -48,10 +48,10 @@ export default {
         <GlobalHeader {...{ props: { title: this.title } }} />
         <BossCard {...{ props: { data } }} />
         <CellGroup>
-          <Cell title="积分管理" is-link to="integralRule/list" />
-          <Cell title="员工奖扣" is-link to="staffManage/logList" />
-          <Cell title="员工管理" is-link to="staffManage/list" />
-          <Cell title="门店管理" is-link to="storeManage/list" />
+          <Cell title="积分管理" is-link to="/integralRule/list" />
+          <Cell title="员工奖扣" is-link to="/staffManage/logList" />
+          <Cell title="员工管理" is-link to="/staffManage/list" />
+          <Cell title="门店管理" is-link to="/storeManage/list" />
         </CellGroup>
         <GlobalTab />
       </div>

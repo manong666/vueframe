@@ -24,12 +24,14 @@ module.exports = {
     requireModuleExtension: true,
     loaderOptions: {
       css: {
-        localIdentName: isProduction
-          ? "[hash:base64:10]"
-          : "[name]-[local]-[hash:base64:7]"
+        modules: {
+          localIdentName: isProduction
+            ? "[hash:base64:10]"
+            : "[name]-[local]-[hash:base64:7]"
+        }
       },
       sass: {
-        data: `@import "~@/styles/variables.scss";` // scss全局变量
+        prependData: `@import "~@/styles/variables.scss";` // scss全局变量
       }
     }
   }

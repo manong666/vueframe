@@ -130,13 +130,13 @@ export default new Router({
           component: () => import("@/views/examine/main")
         },
         {
-          path: "list",
+          path: "list/:approvalId",
           name: "examineList",
           title: "审批列表",
           component: () => import("@/views/examine/list")
         },
         {
-          path: "detail",
+          path: "detail/:detailId",
           name: "examineDetail",
           title: "审批详情",
           component: () => import("@/views/examine/detail")

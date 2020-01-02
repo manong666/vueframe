@@ -27,7 +27,7 @@ const responseFuncObj = {
 http.interceptors.request.use(
   config => {
     if (store.state.user.token) {
-      console.log("zouni");
+      console.log("token", store.state.user.token);
       config.headers["api_token"] = store.state.user.token;
     }
     return config;

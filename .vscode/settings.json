@@ -1,11 +1,12 @@
 {
   // "javascript.validate.enable": true,
   "cSpell.words": [
-    "lettools",
     "JFDOMAIN",
     "esnext",
     "let",
+    "lettools",
     "resultcode",
+    "swipeable",
     "tools"
   ]
 }

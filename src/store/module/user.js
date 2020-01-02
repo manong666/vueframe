@@ -27,10 +27,11 @@ export default {
      * ```
      */
     login({ commit }, params) {
-      get_login({ data: { ...params } }).then(resp => {
+      commit("assignToken", "");
+      return get_login({ data: { ...params } }).then(resp => {
         commit("assignToken", resp.data["token"]);
+        console.log(resp.data["token"]);
         commit("assignInfo", resp.data.data);
-        console.log("zhixing");
       });
     }
   }

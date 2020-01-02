@@ -25,7 +25,7 @@ export default Vue.extend({
       }
     },
     checkBtn: Function,
-    editBtn: Function
+    commitBtn: Function
   },
 
   methods: {
@@ -63,13 +63,13 @@ export default Vue.extend({
           ) : (
             <div class={S.pricefu}>{this.msgData.price}</div>
           )}
-          {this.editBtn && (
+          {this.commitBtn && (
             <div class={S.button}>
               <Button
                 type="warning"
                 size="mini"
-                text="编辑"
-                on-click={() => this.editBtn(this.msgData.id)}
+                text="审批"
+                on-click={() => this.commitBtn(this.msgData.id)}
               />
             </div>
           )}

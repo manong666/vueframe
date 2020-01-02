@@ -8,6 +8,7 @@ export default {
     };
   },
   mounted() {},
+  methods: {},
   destroyed() {},
   render() {
     return (
@@ -18,6 +19,5 @@ export default {
         </div>
       </div>
     );
-  },
-  methods: {}
+  }
 };

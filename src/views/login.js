@@ -47,11 +47,21 @@ export default {
   },
   methods: {
     onClick() {
-      this.$store.dispatch("user/login", {
-        phone: this.userName,
-        pwd: this.passWord
-      });
-      this.$router.push({ name: "main" });
+      this.$store
+        .dispatch("user/login", {
+          phone: this.userName,
+          pwd: this.passWord
+        })
+        .then(() => {
+          console.log(
+            "this.$store.state.user?.token",
+            this.$store.state.user?.token
+          );
+          if (this.$store.state.user?.token) {
+            console.log("tioazhuan ");
+            this.$router.push({ name: "main" });
+          }
+        });
     }
   }
 };

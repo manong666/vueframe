@@ -70,9 +70,7 @@ export default {
   methods: {
     getUserData() {
       get_index({
-        data: {
-          userId: this.$store.state.user.info.userId
-        }
+        data: {}
       }).then(resp => (this.data = resp.data.data[0]));
     }
   }

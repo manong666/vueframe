@@ -47,9 +47,12 @@ export default Vue.extend({
       this.isShowStart = false;
     },
     onChangeEndTime(value) {
+      const time = new Date(
+        new Date(value).getTime() + 24 * 60 * 60 * 1000 - 1
+      );
       const obj = {
         key: "endTime",
-        value: value
+        value: time
       };
       this.searchData.splice(
         this.searchData.findIndex(v => v.key === "endTime"),

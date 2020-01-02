@@ -26,11 +26,7 @@ export default Vue.extend({
     isRepeat() {
       this.children.map(kid => {
         console.log(this.columns.findIndex(v => v === kid.reward));
-        // this.columns.findIndex(v => v === kid.reward) !== -1 &&
-        // this.columns.splice(
-        //   this.columns.findIndex(v => v === kid.reward),
-        //   1
-        // );
+        this.deleteRepeat(kid);
       });
       console.log(this.columns);
       return this.columns;
@@ -42,12 +38,12 @@ export default Vue.extend({
   methods: {
     getRuleList() {
       get_integralNameList().then(resp => {
-        resp.data.data.map(v => this.columns.push(v.reward_punish_name));
+        resp.data.data.map(v => this.columns.push(v.rewardPunishName));
         this.ruleList = resp.data.data.map(v => {
           var {
-            reward_punish_name: name,
-            reward_punish_id: id,
-            reward_punish_integral: price
+            rewardPunishName: name,
+            rewardPunishId: id,
+            rewardPunishIntegral: price
           } = v;
           return { name, id, price };
         });
@@ -93,6 +89,13 @@ export default Vue.extend({
           Toast("提交成功");
         }
       });
+    },
+    deleteRepeat(kid) {
+      this.columns.findIndex(v => v === kid.reward) !== -1 &&
+        this.columns.splice(
+          this.columns.findIndex(v => v === kid.reward),
+          1
+        );
     }
   },
   render() {

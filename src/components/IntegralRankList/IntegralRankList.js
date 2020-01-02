@@ -19,7 +19,6 @@ export default {
             this.showList.push(this.rankList[this.index]);
           }
         }
-        console.log(this.showList.length, this.rankList.length);
         // 加载状态结束
         this.loading = false;
 
@@ -35,7 +34,6 @@ export default {
   },
   mounted() {},
   render() {
-    console.log(this.rankList);
     return (
       <div>
         <Cell title="排名 姓名" value="积分" />

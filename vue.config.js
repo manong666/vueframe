@@ -19,6 +19,21 @@ module.exports = {
         // }
       }
     }
+  },
+  css: {
+    requireModuleExtension: true,
+    loaderOptions: {
+      css: {
+        modules: {
+          localIdentName: isProduction
+            ? "[hash:base64:10]"
+            : "[name]-[local]-[hash:base64:7]"
+        }
+      },
+      sass: {
+        prependData: `@import "~@/styles/variables.scss";` // scss全局变量
+      }
+    }
   }
   // css: {
   //   requireModuleExtension: true,

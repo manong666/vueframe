@@ -14,8 +14,8 @@ Client.scp(
     host: "120.132.9.4",
     path: "/app/fontend",
     username: "root",
-    privateKey
-    // password: 'password', (accepts password also)
+    // privateKey
+    password: "xdjr0lxGu"
   },
   err => {
     console.log(err);

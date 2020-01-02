@@ -35,7 +35,7 @@ export default {
     getStoreList() {
       get_store_list().then(resp => {
         resp.data.data.forEach(v => {
-          let obj = { value: v.store_id, text: v.store_name };
+          let obj = { value: v.storeId, text: v.storeName };
           this.storeList.push(obj);
         });
       });

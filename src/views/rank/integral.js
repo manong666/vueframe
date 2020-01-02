@@ -7,14 +7,19 @@ export default {
   data() {
     return {
       title: "积分排名",
-      value: { date: "日期", store: "0000" },
-      storeList: [{ value: "0000", text: "门店" }],
+      value: [
+        { key: "startTime", value: "开始日期" },
+        { key: "endTime", value: "结束日期" },
+        { key: "store", value: 0 }
+      ],
+      storeList: [{ value: 0, text: "门店" }],
       rankList: []
     };
   },
+  computed: {},
   mounted() {
     this.getStoreList();
-    this.getRankList();
+    this.getRankList(this.value);
   },
   destroyed() {},
   render() {
@@ -23,7 +28,9 @@ export default {
         <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <Dropdown
-            {...{ props: { storeList: this.storeList } }}
+            {...{
+              props: { storeList: this.storeList, rankSearch: this.getRankList }
+            }}
             v-model={this.value}
           />
           <IntegralRankList {...{ props: { rankList: this.rankList } }} />
@@ -35,13 +42,27 @@ export default {
     getStoreList() {
       get_store_list().then(resp => {
         resp.data.data.forEach(v => {
-          let obj = { value: v.store_id, text: v.store_name };
+          let obj = { value: v.storeId, text: v.storeName };
           this.storeList.push(obj);
         });
       });
     },
-    getRankList() {
-      get_integralQuery().then(resp => {
+    getRankList(arr) {
+      const storeId =
+        arr.find(v => v.key === "store").value === "门店"
+          ? ""
+          : arr.find(v => v.key === "store").value || "";
+      const time =
+        (arr.find(v => v.key === "startTime").value === "开始日期"
+          ? ""
+          : arr.find(v => v.key === "startTime").value) || "";
+      const startTime = new Date(time).getTime() || "";
+      get_integralQuery({
+        data: {
+          storeId,
+          startTime
+        }
+      }).then(resp => {
         this.rankList = resp.data.data;
       });
     }

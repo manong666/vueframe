@@ -7,7 +7,7 @@ module.exports = {
   publicPath: process.env.VUE_APP_PUBLICPATH,
   devServer: {
     port: 8080,
-    host: "dev.10010.com",
+    // host: "dev.10010.com",
     proxy: {
       // 基础设施
       "/jf-demo-integral": {

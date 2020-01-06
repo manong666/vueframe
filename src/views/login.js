@@ -35,7 +35,7 @@ export default {
           <Button
             type="primary"
             size="large"
-            color="#469AD0"
+            color="linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%)"
             round
             onClick={() => this.onClick()}
           >

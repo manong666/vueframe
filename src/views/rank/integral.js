@@ -9,7 +9,6 @@ export default {
       title: "积分排名",
       value: [
         { key: "startTime", value: "开始日期" },
-        { key: "endTime", value: "结束日期" },
         { key: "store", value: 0 }
       ],
       storeList: [{ value: 0, text: "门店" }],
@@ -56,11 +55,24 @@ export default {
         (arr.find(v => v.key === "startTime").value === "开始日期"
           ? ""
           : arr.find(v => v.key === "startTime").value) || "";
-      const startTime = new Date(time).getTime() || "";
+      const startTime =
+        new Date(
+          new Date(time).getFullYear(),
+          new Date(time).getMonth()
+        ).getTime() || "";
+      const endTime =
+        new Date(
+          new Date(time).getFullYear(),
+          new Date(time).getMonth() + 1,
+          0
+        ).getTime() +
+        24 * 60 * 60 * 1000 -
+        1;
       get_integralQuery({
         data: {
           storeId,
-          startTime
+          startTime,
+          endTime
         }
       }).then(resp => {
         this.rankList = resp.data.data;

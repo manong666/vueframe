@@ -92,7 +92,11 @@ export default Vue.extend({
         confirmButtonText: "通过",
         cancelButtonText: "驳回",
         closeOnPopstate: true,
-        closeOnClickOverlay: true
+        closeOnClickOverlay: true,
+        beforeClose: (action, done) => {
+          console.log(action);
+          done(false);
+        }
       })
         .then(() => console.log(id))
         .catch(() => console.log("驳回"));

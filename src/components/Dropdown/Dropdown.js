@@ -17,7 +17,6 @@ export default {
   },
   computed: {
     getResult() {
-      this.$emit("changeData", this.value);
       return this.value;
     }
   },
@@ -33,6 +32,7 @@ export default {
         1,
         obj
       );
+      this.$emit("changeData", this.value);
       this.rankSearch(this.value);
     },
     onChangeStore(value) {
@@ -45,6 +45,7 @@ export default {
         1,
         obj
       );
+      this.$emit("changeData", this.value);
       this.rankSearch(this.value);
     }
   },
@@ -53,20 +54,10 @@ export default {
   },
   render() {
     const startTime = this.value.find(v => v.key === "startTime")?.value;
-    const endTime = this.value.find(v => v.key === "startTime")?.value;
     return (
       <div>
         <DropdownMenu>
           <DropdownItem title={startTime}>
-            <DatetimePicker
-              show-toolbar={false}
-              v-model={this.currentDate}
-              type="year-month"
-              slot="default"
-              {...{ on: { change: this.onChangeTime } }}
-            />
-          </DropdownItem>
-          <DropdownItem title={endTime}>
             <DatetimePicker
               show-toolbar={false}
               v-model={this.currentDate}

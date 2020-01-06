@@ -7,14 +7,17 @@ export default {
   data() {
     return {
       title: "奖券排名",
-      value: { date: "日期", store: "0000" },
-      storeList: [{ value: "0000", text: "门店" }],
+      value: [
+        { key: "startTime", value: "开始日期" },
+        { key: "store", value: 0 }
+      ],
+      storeList: [{ value: 0, text: "门店" }],
       rankList: []
     };
   },
   mounted() {
     this.getStoreList();
-    this.getRankList();
+    this.getRankList(this.value);
   },
   destroyed() {},
   render() {
@@ -23,7 +26,9 @@ export default {
         <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <Dropdown
-            {...{ props: { storeList: this.storeList } }}
+            {...{
+              props: { storeList: this.storeList, rankSearch: this.getRankList }
+            }}
             v-model={this.value}
           />
           <LotteryRankList {...{ props: { rankList: this.rankList } }} />
@@ -40,8 +45,35 @@ export default {
         });
       });
     },
-    getRankList() {
-      get_ticketQuery().then(resp => {
+    getRankList(arr) {
+      const storeId =
+        arr.find(v => v.key === "store").value === "门店"
+          ? ""
+          : arr.find(v => v.key === "store").value || "";
+      const time =
+        (arr.find(v => v.key === "startTime").value === "开始日期"
+          ? ""
+          : arr.find(v => v.key === "startTime").value) || "";
+      const startTime =
+        new Date(
+          new Date(time).getFullYear(),
+          new Date(time).getMonth()
+        ).getTime() || "";
+      const endTime =
+        new Date(
+          new Date(time).getFullYear(),
+          new Date(time).getMonth() + 1,
+          0
+        ).getTime() +
+        24 * 60 * 60 * 1000 -
+        1;
+      get_ticketQuery({
+        data: {
+          storeId,
+          startTime,
+          endTime
+        }
+      }).then(resp => {
         this.rankList = resp.data.data;
       });
     }

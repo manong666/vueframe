@@ -31,7 +31,6 @@ export default Vue.extend({
       this.isShowEnd = true;
     },
     onChangeTime(value) {
-      console.log("object");
       const obj = {
         key: "startTime",
         value: value

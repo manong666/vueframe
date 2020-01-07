@@ -1,10 +1,16 @@
 .total {
   background: linear-gradient(to right,#8590fb,#4cc2d7);
+  padding:5px;
   color:white;
   .lineOne {
     display: flex;
     justify-content: space-between;
+    .userContainer{
+      height:14px;
+    }
     .user {
+      height:14px;
+      line-height: 14px;
       font-size: 14px;
     }
     .post {
@@ -17,6 +23,7 @@
   }
   .lineTwo {
     text-align: center;
+    margin: 20px 0px;
     .monthIntegral {
       font-size: 20px;
       font-weight: bold;
@@ -35,6 +42,7 @@
     .integral {
       font-size: 14px;
       font-weight: bold;
+      text-align: center;
     }
     .rank {
       font-size: 14px;

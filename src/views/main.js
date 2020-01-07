@@ -1,20 +1,23 @@
-import { get_index } from "@/api/index";
+import { get_index, get_integralInformation } from "@/api/index";
 import PersonCard from "@/components/PersonCard/PersonCard";
 import RankList from "@/components/RankList/RankList";
 import IntegralList from "@/components/IntegralList/IntegralList";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import GlobalTab from "@/components/GlobalTab/GlobalTab";
 import BossCard from "@/components/PersonCard/BossCard";
 import { Cell, CellGroup } from "vant";
 import S from "./main.module.scss";
 export default {
   data() {
+    //  "role_id":"03",
+    //  "userName":"张三",
+
     return {
       title: "首页",
       data: {
         userInfo: {
-          rank: "", // 总榜排名
-          integral: "",
+          rank: 1, // 总榜排名
+          integralTotal: 0,
           integralToday: 0, // 今日积分
           integralWeek: 0, // 本周积分
           integralMonth: 0, // 本月积分
@@ -39,13 +42,13 @@ export default {
   },
   mounted() {
     this.getUserData();
+    this.getIntegralList();
   },
   destroyed() {},
   render() {
     const data = this.data;
     return this.$store.state.user.info.roleID === "01" ? (
       <div class={S.mainPage} style="background:#fff">
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <BossCard {...{ props: { data } }} />
         <CellGroup>
           <Cell title="积分管理" is-link to="/integralRule/list" />
@@ -57,7 +60,6 @@ export default {
       </div>
     ) : (
       <div class={S.mainPage}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <PersonCard {...{ props: { data } }} />
           <RankList {...{ props: { data } }} />
@@ -72,22 +74,15 @@ export default {
       get_index({
         data: {}
       }).then(resp => {
-        this.data = resp.data.data[0];
+        this.data.userInfo = resp.data.data[0];
+        console.log(this.data);
         this.$store.dispatch("user/info", this.data);
+      });
+    },
+    getIntegralList() {
+      get_integralInformation({ data: {} }).then(resp => {
+        console.log(resp);
       });
     }
   }
 };
-
-// integralMonth: -195
-// integralToday: null
-// integralYear: -145
-// rankWeek: 2
-// rankMonth: 2
-// role_id: "03"
-// user_name: "李四"
-// rankToday: null
-// rank: 2
-// integralWeek: -140
-// rankYear: 2
-// integralTotal: -145

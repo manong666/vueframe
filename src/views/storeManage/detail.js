@@ -1,5 +1,4 @@
 import S from "./detail.module.scss";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 
 export default {
   data() {
@@ -13,9 +12,7 @@ export default {
   render() {
     return (
       <div class={S.mainPage}>
-        <div class={S.container}>
-          <GlobalHeader {...{ props: { title: this.title } }} />
-        </div>
+        <div class={S.container}></div>
       </div>
     );
   }

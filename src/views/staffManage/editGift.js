@@ -1,5 +1,5 @@
 import S from "./editGift.module.scss";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import RewardStaffAdd from "@/components/RewardCard/RewardStaffAdd";
 import { get_store_list } from "@/api/index";
 export default {
@@ -59,7 +59,6 @@ export default {
     return (
       <div class={S.mainPage}>
         <div class={S.container}>
-          <GlobalHeader {...{ props: { title: this.title } }} />
           <RewardStaffAdd
             {...{
               props: {

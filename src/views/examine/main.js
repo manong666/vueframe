@@ -1,5 +1,5 @@
 import S from "./main.module.scss";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import NavGrid from "@/components/NavGrid/NavGrid";
 export default {
   data() {
@@ -13,7 +13,6 @@ export default {
   render() {
     return (
       <div class={S.main}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <NavGrid />
         </div>

@@ -1,6 +1,6 @@
 import S from "./list.module.scss";
 import { Button } from "vant";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import JfRuleList from "@/components/IntegralList/JfRuleList";
 import { get_rule_list, get_rule_delete } from "@/api/index";
 export default {
@@ -30,7 +30,6 @@ export default {
     console.log(this.data);
     return (
       <div class={S.mainPage}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <JfRuleList
           {...{
             props: { data: this.data },

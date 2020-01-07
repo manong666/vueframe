@@ -1,6 +1,6 @@
 .rankBox{
   display: flex;
-  margin-top:20px;
+  margin:10px 0;
   justify-content: space-around;
   width: 100vw;
   .title{
@@ -12,13 +12,13 @@
   .integral{
     text-align: center;
     margin:5px 0;
-    font-size:15px;
+    font-size:17px;
     font-weight: bold;
   }
   .rank{
     color:	#1E90FF;
     margin:5px 0;
-    font-size:14px;
+    font-size:17px;
     font-weight: bold;
     text-align: center;
 

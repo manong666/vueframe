@@ -1,7 +1,7 @@
 import Vue from "vue";
 import { Button, Toast } from "vant";
 import GlobalTab from "@/components/GlobalTab/GlobalTab";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import RewardCard from "@/components/RewardCard/RewardCard";
 import { get_integralNameList, get_applyIntegral } from "@/api/index";
 import S from "./main.module.scss";
@@ -101,7 +101,6 @@ export default Vue.extend({
   render() {
     return (
       <div class={S.main}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           {this.children.map(v => (
             <RewardCard

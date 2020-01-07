@@ -1,6 +1,6 @@
 import S from "./logList.module.scss";
 import { Button } from "vant";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import StaffList from "@/components/StaffList/StaffList";
 import { get_staff_list, get_staff_delete } from "@/api/index";
 export default {
@@ -29,7 +29,6 @@ export default {
     return (
       <div class={S.mainPage}>
         <div class={S.container}>
-          <GlobalHeader {...{ props: { title: this.title } }} />
           <StaffList
             {...{
               props: { data: this.data },

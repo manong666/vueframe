@@ -1,6 +1,6 @@
 import S from "./logList.module.scss";
 import { Button } from "vant";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import RewardList from "@/components/RewardList/RewardList";
 import {
   get_encourageStaff_list,
@@ -33,7 +33,6 @@ export default {
     return (
       <div class={S.mainPage}>
         <div class={S.container}>
-          <GlobalHeader {...{ props: { title: this.title } }} />
           <RewardList
             {...{
               props: { data: this.data },

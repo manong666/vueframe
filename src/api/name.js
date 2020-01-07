@@ -1,6 +1,7 @@
 export default {
   login: "/integral/index/login.do", //登录接口:
   index: "/integral/manager/index.do", //首页接口:
+  integralInformation: "/integral/manager/integralInformation.do", //首页积分信息接口:
   integralQuery: "/integral/manager/integralQuery.do", //积分排名查询接口:
   ticketQuery: "/integral/manager/ticketQuery.do", //奖券排名查询接口:
   applyList: "/integral/manager/my/applyList.do", //我的_申请列表接口:

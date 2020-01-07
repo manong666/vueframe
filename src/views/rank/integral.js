@@ -1,4 +1,3 @@
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import IntegralRankList from "@/components/IntegralRankList/IntegralRankList";
 import { get_store_list, get_integralQuery } from "@/api/index";
@@ -24,7 +23,6 @@ export default {
   render() {
     return (
       <div class={S.main}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <Dropdown
             {...{

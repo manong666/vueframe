@@ -2,7 +2,7 @@ import Vue from "vue";
 import { Cell, CellGroup } from "vant";
 import { get_applyDetailList } from "@/api/index";
 import S from "./applyOne.module.scss";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 export default Vue.extend({
   data() {
     return {
@@ -20,7 +20,6 @@ export default Vue.extend({
     const data = this.detailObj;
     return (
       <div class={S.main}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <CellGroup>
             <Cell title="奖项名称" value={data.rewardPunishName} size="large" />

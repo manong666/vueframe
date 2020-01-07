@@ -1,5 +1,5 @@
 import S from "./edit.module.scss";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import StoreAdd from "@/components/StoreList/StoreAdd";
 import {
   get_store_detailList,
@@ -59,7 +59,6 @@ export default {
     return (
       <div class={S.mainPage}>
         <div class={S.container}>
-          <GlobalHeader {...{ props: { title: this.title } }} />
           <StoreAdd
             {...{
               props: {

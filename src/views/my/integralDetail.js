@@ -1,4 +1,3 @@
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import { get_integralDetailQuery } from "@/api/index";
 import IntegralDetailTab from "@/components/IntegralDetailTab/IntegralDetailTab";
 import SearchByTimeAndTxt from "@/components/SearchByTimeAndTxt/SearchByTimeAndTxt";
@@ -32,7 +31,6 @@ export default {
   render() {
     return (
       <div class={S.main}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <SearchByTimeAndTxt
             v-model={this.searchData}

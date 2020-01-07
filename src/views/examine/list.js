@@ -2,7 +2,7 @@ import Vue from "vue";
 import { Tabs, Tab, Dialog } from "vant";
 import { get_list } from "@/api/index";
 import SearchByTimeAndTxt from "@/components/SearchByTimeAndTxt/SearchByTimeAndTxt";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import GlobalAdaptionCard from "@/components/GlobalAdaptionCard/GlobalAdaptionCard";
 import S from "./list.module.scss";
 
@@ -113,7 +113,6 @@ export default Vue.extend({
     const commitBtn = this.state === "03" ? this.commitBtn : false;
     return (
       <div class={S.main}>
-        <GlobalHeader title={this.title} />
         <div class={S.container}>
           <Tabs
             v-model={this.index}

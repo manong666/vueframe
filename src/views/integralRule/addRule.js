@@ -1,6 +1,6 @@
 import S from "./addRule.module.scss";
 // import { Button } from "vant";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import RewardModule from "@/components/RewardCard/RewardModule";
 import { get_rule_add } from "@/api/index";
 export default {
@@ -13,7 +13,6 @@ export default {
   render() {
     return (
       <div class={S.mainPage}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <RewardModule
           {...{
             props: {

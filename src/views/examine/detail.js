@@ -1,6 +1,6 @@
 import Vue from "vue";
 import { CellGroup, Cell } from "vant";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import { get_detailList } from "@/api/index";
 import S from "./detail.module.scss";
 export default Vue.extend({
@@ -32,7 +32,6 @@ export default Vue.extend({
     const data = this.detailObj;
     return (
       <div class={S.main}>
-        <GlobalHeader title={this.title} />
         <div class={S.container}>
           <CellGroup>
             <Cell title="员工姓名" value={data.userName} />

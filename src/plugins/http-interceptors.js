@@ -27,7 +27,7 @@ const responseFuncObj = {
 http.interceptors.request.use(
   config => {
     if (store.state.user.token) {
-      config.headers["api_token"] = store.state.user.token;
+      config.headers["apiToken"] = store.state.user.token;
     }
     return config;
   },
@@ -41,8 +41,13 @@ http.interceptors.response.use(
   resp => {
     const {
       data: { code, msg, data }
+      // code: httpCode
     } = resp;
 
+    // http状态码处理
+    console.log(resp);
+
+    // 应用业务编码处理
     try {
       responseFuncObj[code](data);
     } catch (error) {
@@ -52,6 +57,16 @@ http.interceptors.response.use(
     return resp;
   },
   error => {
+    console.log("error", error);
+    // if (error.response) {
+    //   // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+    //   console.log(error.response.data);
+    //   console.log(error.response.status);
+    //   console.log(error.response.headers);
+    // } else {
+    //   // Something happened in setting up the request that triggered an Error
+    //   console.log("Error", error.message);
+    // }
     Notify("网络异常，请检查网络环境后重试");
     return Promise.reject(error);
   }

@@ -1,4 +1,3 @@
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
 import ApplyTab from "@/components/ApplyTab/ApplyTab";
 import S from "./applyList.module.scss";
 export default {
@@ -12,7 +11,6 @@ export default {
   render() {
     return (
       <div class={S.main}>
-        <GlobalHeader {...{ props: { title: this.title } }} />
         <div class={S.container}>
           <ApplyTab />
         </div>

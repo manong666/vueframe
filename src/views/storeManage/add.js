@@ -1,6 +1,6 @@
 import Vue from "vue";
 import S from "./add.module.scss";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+
 import StoreAdd from "@/components/StoreList/StoreAdd";
 import { get_staff_list, get_store_add } from "@/api/index";
 export default Vue.extend({
@@ -28,7 +28,6 @@ export default Vue.extend({
     return (
       <div class={S.mainPage}>
         <div class={S.container}>
-          <GlobalHeader {...{ props: { title: this.title } }} />
           <StoreAdd
             {...{
               props: {

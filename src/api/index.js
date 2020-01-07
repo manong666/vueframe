@@ -56,6 +56,22 @@ export const get_integralQuery = param =>
 //   import("@/mock/integralRank").then(resp => resp.default);
 
 /**
+ * @description 首页积分信息接口
+ */
+export const get_integralInformation = param =>
+  http.request(
+    merge(
+      {
+        url: api_URL.integralInformation,
+        method: "post",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        data: {}
+      },
+      param
+    )
+  );
+
+/**
  * @description 奖券排名查询接口
  */
 export const get_ticketQuery = param =>

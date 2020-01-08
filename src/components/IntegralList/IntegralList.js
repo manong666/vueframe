@@ -20,6 +20,7 @@ export default {
           {this.data.integralList.map(
             (v, i) =>
               i < 10 && (
+                //TODO: 改为Panel
                 <List class={S.list}>
                   <div>
                     {v.name},{v.ruleName}--{v.ruleNum}

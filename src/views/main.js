@@ -47,7 +47,7 @@ export default {
   destroyed() {},
   render() {
     const data = this.data;
-    return this.$store.state.user.info.roleID === "01" ? (
+    return this.$store.state.user.info.roleId === "01" ? (
       <div class={S.mainPage} style="background:#fff">
         <BossCard {...{ props: { data } }} />
         <CellGroup>

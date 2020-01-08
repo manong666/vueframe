@@ -40,7 +40,8 @@ export default {
     getRuleList() {
       this.ruleList = JSON.parse(localStorage.getItem("ruleList"));
       console.log("奖扣规则列表", this.ruleList);
-      this.ruleList.map(v => this.columns.push(v.rewardPunishName));
+      this.ruleList &&
+        this.ruleList.map(v => this.columns.push(v.rewardPunishName));
       console.log("columns", this.columns);
     },
     getShopList() {

@@ -6,19 +6,49 @@ import {
   get_encourageStaff_list,
   get_encourageStaff_delete
 } from "@/api/index";
+import SearchByTimeAndTxt from "@/components/SearchByTimeAndTxt/SearchByTimeAndTxt";
 export default {
   data() {
     return {
       title: "员工奖扣",
-      data: []
+      data: [],
+      searchData: [
+        {
+          key: "searchTxt",
+          value: ""
+        },
+        {
+          key: "startTime",
+          value: "开始日期"
+        },
+        { key: "endTime", value: "结束日期" },
+        { key: "type", value: "" }
+      ]
     };
   },
   mounted() {
-    this.getStaffRewardList();
+    this.getStaffRewardList(this.searchData);
   },
   methods: {
-    getStaffRewardList() {
-      get_encourageStaff_list().then(resp => {
+    getStaffRewardList(data) {
+      const time =
+        (data.find(v => v.key === "startTime").value === "开始日期"
+          ? ""
+          : data.find(v => v.key === "startTime").value) || "";
+      const endt =
+        (data.find(v => v.key === "endTime").value === "结束日期"
+          ? ""
+          : data.find(v => v.key === "endTime").value) || "";
+      const searchInfo = data.find(v => v.key === "searchTxt").value;
+      const startTime = new Date(time).getTime() || "";
+      const endTime = new Date(endt).getTime() || "";
+      get_encourageStaff_list({
+        data: {
+          startTime,
+          endTime,
+          searchInfo
+        }
+      }).then(resp => {
         this.data = resp.data.data;
         localStorage.setItem("giftList", JSON.stringify(resp.data.data));
         console.log(this.data);
@@ -33,6 +63,10 @@ export default {
     return (
       <div class={S.mainPage}>
         <div class={S.container}>
+          <SearchByTimeAndTxt
+            searchData={this.searchData}
+            getData={this.getStaffRewardList}
+          />
           <RewardList
             {...{
               props: { data: this.data },

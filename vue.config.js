@@ -13,8 +13,8 @@ module.exports = {
       "/jf-demo-integral": {
         ws: false,
         changeOrigin: true,
-        target: "http://demo.mall.10010.com:8104"
-        // target: "http://120.132.9.4"
+        // target: "http://demo.mall.10010.com:8104"
+        target: "http://120.132.9.4"
         // pathRewrite: {
         //   "^/jf-demo-integral": "/" // rewrite path
         // }

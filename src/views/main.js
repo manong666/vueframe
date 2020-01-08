@@ -31,7 +31,7 @@ export default {
           // 10条
           {
             id: "",
-            name: "",
+            name: "有点东西",
             ruleName: "",
             ruleNum: 1,
             time: 1 // 绝对时间

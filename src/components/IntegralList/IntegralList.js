@@ -1,6 +1,6 @@
 import S from "./IntegralList.module.scss";
 import moment from "moment";
-import { Cell, Tag, List } from "vant";
+import { Cell, Tag, Panel } from "vant";
 export default {
   data() {
     return {};
@@ -17,18 +17,32 @@ export default {
           </Tag>
         </Cell>
         <div class={S.listBox}>
-          {this.data.integralList.map(
-            (v, i) =>
-              i < 10 && (
-                //TODO: 改为Panel
-                <List class={S.list}>
-                  <div>
-                    {v.name},{v.ruleName}--{v.ruleNum}
-                  </div>
-                  <div>{this.getDate(v.time)}</div>
-                </List>
-              )
-          )}
+          {this.data.integralList &&
+            this.data.integralList.map(
+              (v, i) =>
+                i < 10 && (
+                  //TODO: 改为Panel
+                  // <List class={S.list}>
+                  //   <div>
+                  //     {v.name},{v.ruleName}--{v.ruleNum}
+                  //   </div>
+                  //   <div>{this.getDate(v.time)}</div>
+                  // </List>
+                  <Panel
+                    // title={v.ruleName}
+                    // status={v.ruleNum}
+                    // desc={`${v.name},${this.getDate(v.time)}`}
+                    title="adsfdgfhgasdfdghdf"
+                    status="500"
+                    desc={
+                      <div class={S.slotBox}>
+                        <div>{v.name}</div>
+                        <div>{this.getDate(v.time)}</div>
+                      </div>
+                    }
+                  />
+                )
+            )}
         </div>
       </div>
     );

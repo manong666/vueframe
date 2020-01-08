@@ -33,12 +33,15 @@
   .listBox{
     margin:0;
     background: #fff;
-    padding-left:10px;
+    // padding-left:10px;
   }
   .list{
     display: flex;
     justify-content: space-between;
-    
-    
+  }
+  .slotBox{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }

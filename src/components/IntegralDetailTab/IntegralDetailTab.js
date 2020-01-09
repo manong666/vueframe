@@ -37,6 +37,7 @@ export default {
   mounted() {},
   render() {
     this.index = this.searchData.find(v => v.key === "type").value;
+    const totalNum = this.detailList.slice(-1)[0]?.totalNumber;
     return (
       <div>
         <Row type="flex" justify="space-between">
@@ -48,63 +49,72 @@ export default {
               on-change={this.changTab}
             >
               <Tab name="01" title="全部" class={S.tab}>
-                {this.detailList.map(v => (
-                  <GlobalAdaptionCard
-                    {...{
-                      props: {
-                        msgData: {
-                          title: v.rewardPunishName,
-                          id: v.staffRewardPunishId,
-                          price: v.integralNumber,
-                          time: v.createTime,
-                          approvalTime: v.bossApprovalTime
-                        },
-                        checkBtn: this.checkBtn
-                      }
-                    }}
-                  />
-                ))}
+                {this.detailList.map(
+                  (v, i, arr) =>
+                    i < arr.length - 1 && (
+                      <GlobalAdaptionCard
+                        {...{
+                          props: {
+                            msgData: {
+                              title: v.rewardPunishName,
+                              id: v.staffRewardPunishId,
+                              price: v.integralNumber,
+                              time: v.createTime,
+                              approvalTime: v.bossApprovalTime
+                            },
+                            checkBtn: this.checkBtn
+                          }
+                        }}
+                      />
+                    )
+                )}
               </Tab>
               <Tab name="02" title="奖励" class={S.tab}>
-                {this.detailList.map(v => (
-                  <GlobalAdaptionCard
-                    {...{
-                      props: {
-                        msgData: {
-                          title: v.rewardPunishName,
-                          id: v.staffRewardPunishId,
-                          price: v.integralNumber,
-                          time: v.createTime,
-                          approvalTime: v.bossApprovalTime
-                        },
-                        checkBtn: this.checkBtn
-                      }
-                    }}
-                  />
-                ))}
+                {this.detailList.map(
+                  (v, i, arr) =>
+                    i < arr.length - 1 && (
+                      <GlobalAdaptionCard
+                        {...{
+                          props: {
+                            msgData: {
+                              title: v.rewardPunishName,
+                              id: v.staffRewardPunishId,
+                              price: v.integralNumber,
+                              time: v.createTime,
+                              approvalTime: v.bossApprovalTime
+                            },
+                            checkBtn: this.checkBtn
+                          }
+                        }}
+                      />
+                    )
+                )}
               </Tab>
               <Tab name="03" title="扣分" class={S.tab}>
-                {this.detailList.map(v => (
-                  <GlobalAdaptionCard
-                    {...{
-                      props: {
-                        msgData: {
-                          title: v.rewardPunishName,
-                          id: v.staffRewardPunishId,
-                          price: v.integralNumber,
-                          time: v.createTime,
-                          approvalTime: v.bossApprovalTime
-                        },
-                        checkBtn: this.checkBtn
-                      }
-                    }}
-                  />
-                ))}
+                {this.detailList.map(
+                  (v, i, arr) =>
+                    i < arr.length - 1 && (
+                      <GlobalAdaptionCard
+                        {...{
+                          props: {
+                            msgData: {
+                              title: v.rewardPunishName,
+                              id: v.staffRewardPunishId,
+                              price: v.integralNumber,
+                              time: v.createTime,
+                              approvalTime: v.bossApprovalTime
+                            },
+                            checkBtn: this.checkBtn
+                          }
+                        }}
+                      />
+                    )
+                )}
               </Tab>
             </Tabs>
           </Col>
           <Col span="4">
-            <div class={S.txtColor}>+200</div>
+            <div class={S.txtColor}>{totalNum}</div>
             <div>总积分</div>
           </Col>
         </Row>
@@ -112,10 +122,3 @@ export default {
     );
   }
 };
-
-// integralNumber: 50
-// staffRewardPunishId: 6
-// rewardPunishName: "卖出超1000元单子"
-// rewardPunishIntegral: 50
-// createTime: "2019-12-09 00:00:00"
-// bossApprovalState: "01"

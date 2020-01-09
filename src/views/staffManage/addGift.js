@@ -73,8 +73,8 @@ export default {
               },
               on: {
                 saveItem: val => {
-                  get_encourageStaff_add({ data: val }).then(
-                    resp => (this.data = resp)
+                  get_encourageStaff_add({ data: val }).then(() =>
+                    this.$router.go(-1)
                   );
                 }
               }

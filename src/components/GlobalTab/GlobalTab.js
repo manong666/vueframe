@@ -8,7 +8,7 @@ export default {
   },
   methods: {},
   render() {
-    return this.$store.state.user.info.roleId === "01" ? (
+    return this.$store.state.user.info.userInfo.roleId === "01" ? (
       <div>
         <Tabbar v-model={this.tab} fixed route class={S.tab}>
           <TabbarItem name="main" to="/">
@@ -31,7 +31,7 @@ export default {
           </TabbarItem>
         </Tabbar>
       </div>
-    ) : this.$store.state.user.info.roleId === "02" ? (
+    ) : this.$store.state.user.info.userInfo.roleId === "02" ? (
       <div>
         <Tabbar v-model={this.tab} fixed route class={S.tab}>
           <TabbarItem name="main" to="/">

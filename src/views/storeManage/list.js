@@ -35,7 +35,12 @@ export default {
               on: {
                 deleteThis: id => {
                   get_store_delete({ data: { storeId: id } }).then(
-                    resp => (this.data = resp)
+                    resp =>
+                      resp.data.code === "0000" &&
+                      this.data.splice(
+                        this.data.findIndex(v => v.storeId === id),
+                        1
+                      )
                   );
                 }
               }

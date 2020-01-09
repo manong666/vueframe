@@ -35,7 +35,12 @@ export default {
               on: {
                 deleteThis: id => {
                   get_staff_delete({ data: { userId: id } }).then(
-                    resp => (this.data = resp)
+                    resp =>
+                      resp.data.code === "0000" &&
+                      this.data.splice(
+                        this.data.findIndex(v => v.userId === id),
+                        1
+                      )
                   );
                 }
               }

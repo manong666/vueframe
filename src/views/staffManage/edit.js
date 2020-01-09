@@ -73,7 +73,9 @@ export default {
               },
               on: {
                 saveItem: val => {
-                  get_staff_add({ data: val }).then(resp => (this.data = resp));
+                  get_staff_add({ data: val }).then(
+                    resp => resp.data.code === "0000" && this.$router.go(-1)
+                  );
                 }
               }
             }}

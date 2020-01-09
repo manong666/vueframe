@@ -46,7 +46,7 @@ export default {
             },
             on: {
               chagneItem: val => {
-                get_rule_add({ data: val }).then(resp => (this.data = resp));
+                get_rule_add({ data: val }).then(() => this.$router.go(-1));
               }
             }
           }}

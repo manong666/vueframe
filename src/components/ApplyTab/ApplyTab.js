@@ -38,7 +38,6 @@ export default {
       const endTime = new Date(endt).getTime() || "";
       get_applyList({
         data: {
-          userId: 3,
           startTime,
           endTime,
           bossApprovalState,

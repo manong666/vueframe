@@ -36,6 +36,7 @@ export default {
     },
     saveStaff() {
       console.log("save", this.c_item);
+      this.c_item.workTime = new Date(this.c_item.workTime).getTime();
       this.$emit("saveItem", this.c_item);
     }
   },

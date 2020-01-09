@@ -69,7 +69,9 @@ export default {
               on: {
                 saveStore: val => {
                   console.log("storeparams", val);
-                  get_store_add({ data: val }).then(resp => (this.data = resp));
+                  get_store_add({ data: val }).then(
+                    resp => resp.data.code === "0000" && this.$router.go(-1)
+                  );
                 }
               }
             }}

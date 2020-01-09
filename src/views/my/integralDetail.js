@@ -63,7 +63,6 @@ export default {
       // const endTime = "";
       get_integralDetailQuery({
         data: {
-          userId: 2,
           startTime,
           endTime,
           type,

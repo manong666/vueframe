@@ -36,7 +36,12 @@ export default {
             on: {
               deleteItem: id => {
                 get_rule_delete({ data: { rewardPunishId: id } }).then(
-                  resp => (this.data = resp)
+                  resp =>
+                    resp.data.code === "0000" &&
+                    this.data.splice(
+                      this.data.findIndex(v => v.rewardPunishId === id),
+                      1
+                    )
                 );
               }
             }

@@ -30,11 +30,10 @@ export default {
         integralList: [
           // 10条
           {
-            id: "",
-            name: "有点东西",
-            ruleName: "",
-            ruleNum: 1,
-            time: 1 // 绝对时间
+            bossApprovalTime: "2020-01-09 11:50:43",
+            integralNumber: -40,
+            rewardPunishName: "wdfgbn",
+            userName: "ccc"
           }
         ]
       }
@@ -47,7 +46,7 @@ export default {
   destroyed() {},
   render() {
     const data = this.data;
-    return this.$store.state.user.info.roleId === "01" ? (
+    return this.$store.state.user.info.userInfo.roleId === "01" ? (
       <div class={S.mainPage} style="background:#fff">
         <BossCard {...{ props: { data } }} />
         <CellGroup>
@@ -81,7 +80,7 @@ export default {
     },
     getIntegralList() {
       get_integralInformation({ data: {} }).then(resp => {
-        console.log(resp);
+        this.data.integralList = resp.data.data;
       });
     }
   }

@@ -25,7 +25,7 @@ export default {
         idCard: "",
         storeName: "",
         storeId: 0,
-        workTime: "",
+        // workTime: "",
         diploma: "",
         speciality: ""
       },

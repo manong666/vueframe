@@ -36,7 +36,7 @@ export default {
     },
     saveStaff() {
       console.log("save", this.c_item);
-      this.c_item.workTime = new Date(this.c_item.workTime).getTime();
+      // this.c_item.workTime = new Date(this.c_item.workTime).getTime();
       this.$emit("saveItem", this.c_item);
     }
   },
@@ -66,11 +66,11 @@ export default {
           placeholder="请选择门店"
           onClick={this.showPicker}
         />
-        <Field
+        {/* <Field
           v-model={this.c_item.workTime}
           label="工作开始时间"
           placeholder="请输入yyyy-mm-dd格式"
-        />
+        /> */}
         <Field
           v-model={this.c_item.diploma}
           label="学历"

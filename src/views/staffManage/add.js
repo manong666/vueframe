@@ -39,7 +39,7 @@ export default Vue.extend({
                   phoneNo: "",
                   idCard: "",
                   storeName: "",
-                  workTime: "0000-00-00",
+                  // workTime: "0000-00-00",
                   diploma: "",
                   speciality: ""
                 },

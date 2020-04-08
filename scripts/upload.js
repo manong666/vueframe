@@ -25,11 +25,11 @@ exec(`yarn build`, (error, stdout, stderr) => {
     distPath,
     {
       port: 22,
-      host: "120.132.9.4",
+      host: "47.97.40.155",
       path: "/app/fontend",
       username: "root",
       // privateKey
-      password: "xdjr0lxGu"
+      password: "buzhidao@123"
     },
     err => {
       console.log("have error:", err);

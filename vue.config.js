@@ -6,19 +6,19 @@ module.exports = {
   productionSourceMap: !isProduction,
   publicPath: process.env.VUE_APP_PUBLICPATH,
   devServer: {
-    port: 8080,
+    port: 8080
     // host: "dev.10010.com",
-    proxy: {
-      // 基础设施
-      "/jf-demo-integral": {
-        ws: false,
-        changeOrigin: true,
-        // target: ""
-        // pathRewrite: {
-        //   "^/jf-demo-integral": "/" // rewrite path
-        // }
-      }
-    }
+    // proxy: {
+    // 基础设施
+    // "/jf-demo-integral": {
+    // ws: false,
+    // changeOrigin: true,
+    // target: ""
+    // pathRewrite: {
+    //   "^/jf-demo-integral": "/" // rewrite path
+    // }
+    // }
+    // }
   },
   css: {
     requireModuleExtension: true,

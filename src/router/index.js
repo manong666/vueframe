@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import RouteView from "@/components/layout/route";
+// import RouteView from "@/components/layout/route";
 
 Vue.use(Router);
 
@@ -31,5 +31,14 @@ export default new Router({
     //   }, 500);
     // });
   },
-  routes:[]
+  routes: [
+    {
+      path: "/",
+      name: "main",
+      meta: {
+        title: "首页"
+      },
+      component: () => import("@/views/main")
+    }
+  ]
 });

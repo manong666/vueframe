@@ -1,6 +1,7 @@
 import Vue from "vue";
+import { Button } from "ant-design-vue";
 import S from "@/App.scss";
-import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+Vue.use(Button);
 export default Vue.extend({
   name: "app",
   data() {
@@ -10,8 +11,8 @@ export default Vue.extend({
   render() {
     return (
       <div class={S.view}>
-        <GlobalHeader title={this.$router.currentRoute.meta.title} />
         <router-view />
+        <a-button>hahaa</a-button>
       </div>
     );
   },

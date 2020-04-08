@@ -1,5 +1,5 @@
 {
-  "name": "integral-manage",
+  "name": "travelInsurance",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,9 @@
     "commit": "git-cz"
   },
   "dependencies": {
+    "@antv/component": "^0.5.6",
+    "@antv/g2": "^4.0.4",
+    "ant-design-vue": "^1.5.1",
     "axios": "^0.19.0",
     "core-js": "^3.4.3",
     "moment": "^2.24.0",

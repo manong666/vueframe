@@ -8,7 +8,8 @@ const plugins = [
           return "ant-design-vue/lib/custom-time-picker";
         }
         return `ant-design-vue/lib/${name}`;
-      }
+      },
+      style: true
     }
   ],
   "@babel/plugin-proposal-optional-chaining",

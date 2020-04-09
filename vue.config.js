@@ -23,6 +23,9 @@ module.exports = {
   css: {
     requireModuleExtension: true,
     loaderOptions: {
+      less: {
+        javascriptEnabled: true
+      },
       css: {
         modules: {
           localIdentName: isProduction

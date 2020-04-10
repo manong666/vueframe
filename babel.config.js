@@ -1,17 +1,9 @@
 const plugins = [
-  [
-    "import",
-    {
-      libraryName: "ant-design-vue",
-      customName: name => {
-        if (name === "TimePicker") {
-          return "ant-design-vue/lib/custom-time-picker";
-        }
-        return `ant-design-vue/lib/${name}`;
-      },
-      style: true
-    }
-  ],
+  ['import', {
+    libraryName: 'vant',
+    libraryDirectory: 'es',
+    style: true
+  }, 'vant'],
   "@babel/plugin-proposal-optional-chaining",
   "@babel/plugin-proposal-nullish-coalescing-operator"
 ];

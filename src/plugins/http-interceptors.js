@@ -20,15 +20,11 @@ const responseFuncObj = {
   "0000": resp => {
     console.log(resp);
   },
-  "0001": () => router.push("/login"),
   default: msg => Notify(msg)
 };
 
 http.interceptors.request.use(
   config => {
-    if (store.state.user.token) {
-      config.headers["apiToken"] = store.state.user.token;
-    }
     return config;
   },
   err => {

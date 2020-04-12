@@ -3,9 +3,9 @@ const Client = require("scp2");
 const fs = require("fs");
 const path = require("path");
 const distPath = path.join(process.cwd(), "integralManage") + "/";
-const privateKey = fs.readFileSync(
-  path.join(process.cwd(), "scripts", "privateKey")
-);
+// const privateKey = fs.readFileSync(
+//   path.join(process.cwd(), "scripts", "privateKey")
+// );
 
 exec(`yarn build`, (error, stdout, stderr) => {
   if (error) {
@@ -25,11 +25,11 @@ exec(`yarn build`, (error, stdout, stderr) => {
     distPath,
     {
       port: 22,
-      host: "47.97.40.155",
-      path: "/app/fontend",
+      host: "",
+      path: "",
       username: "root",
       // privateKey
-      password: "buzhidao@123"
+      password: ""
     },
     err => {
       console.log("have error:", err);

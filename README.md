@@ -63,6 +63,7 @@ e.g. 如若无依赖改动，无需在每次启动之前执行安装依赖操作
 
 ## 开发教程
 本章节主要通过流程图为读者展示开发总流程，细节部分还需读者阅读相关技术文档。
+（流程图推荐使用Markdown Preview Enhanced观看或打开Typora观看）
 ```flow
 st=>start: 开始
 
@@ -87,3 +88,11 @@ cond(no)->oprouter->e
 ```
 
 
+
+希望调用接口需要从api index进行配置以及采用即可 流程图暂省略
+
+
+## 相关文档
+ VUE 官方文档：https://cn.vuejs.org/v2/guide/
+ vue-router ：https://router.vuejs.org/zh/
+ vuex :https://vuex.vuejs.org/zh/

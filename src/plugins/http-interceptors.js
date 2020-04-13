@@ -1,7 +1,5 @@
 import http from "./http-base.js";
 import { Notify } from "vant";
-import store from "@/store/index";
-import router from "@/router/index";
 // /**
 //  * @description _tips
 //  */

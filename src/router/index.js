@@ -33,12 +33,44 @@ export default new Router({
   },
   routes: [
     {
-      path: "/",
+      path: "/main",
       name: "main",
       meta: {
         title: "首页"
       },
       component: () => import("@/views/main")
-    }
+    },
+    {
+      path: "/tabs",
+      name: "tabs",
+      meta: { title: "tab页签" },
+      component: () =>
+        import(/* webpackChunkName: "tabs" */ "@/views/tabs/tabs"),
+      children: [
+        {
+          path: "/tabs/tab1",
+          name: "tab1",
+          meta: { title: "tab页签" }
+        },
+        {
+          path: "/tabs/tab2",
+          name: "tab2",
+          meta: { title: "tab页签" },
+          component: () =>
+            import(/* webpackChunkName: "tabs" */ "@/views/tabs/tab2")
+        },
+        {
+          path: "/tabs/tab3",
+          name: "tab3",
+          meta: { title: "tab页签" }
+        },
+        {
+          path: "*",
+          name: "404",
+          component: () => import("@/views/exception/404")
+        }
+      ]
+    },
+    { path: "/", redirect: "/tabs/tab1" }
   ]
 });

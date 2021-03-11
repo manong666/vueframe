@@ -14,7 +14,7 @@
     "@antv/component": "^0.5.6",
     "@antv/g2": "^4.0.4",
     "ant-design-vue": "^1.5.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^3.4.3",
     "moment": "^2.24.0",
     "vant": "^2.3.3",
